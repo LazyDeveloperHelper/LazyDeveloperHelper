@@ -2,7 +2,7 @@ name: Generate Changelog
 
 on:
   push:
-    branches: [main, master]
+    branches: [master]
   release:
     types: [published]
 
@@ -14,7 +14,7 @@ jobs:
         env:
           WEBHOOK_SECRET: ${{ secrets.AUTOCHANGELOG_WEBHOOK_SECRET }}
         run: |
-          BODY='{"bump": "major"}'
+          BODY='{"bump": "minor"}'
           SIGNATURE=$(echo -n "$BODY" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" | sed 's/^.* //')
           curl -X POST https://autochangelog.com/api/v1/hooks/c2ab0563-b10b-4537-bf25-e28d9d5e1819 \
             -H "Content-Type: application/json" \
