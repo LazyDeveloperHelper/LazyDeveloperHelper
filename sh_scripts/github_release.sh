@@ -25,7 +25,7 @@ github_release() {
 	zip -r LazyDeveloperHelper.zip LazyDeveloperHelper >/dev/null
 
 	echo "[*] Moving archive to original dist:"
-	mkdir -p "$ORIGINAL_DIR/dist" # создаём в корне репо
+	mkdir -p "$ORIGINAL_DIR/dist"
 	mv LazyDeveloperHelper.zip "$ORIGINAL_DIR/dist/"
 
 	echo "[✓] Done. Clean .zip is in dist/, size:"
