@@ -1,12 +1,22 @@
 #!/usr/bin/python3
-
+# -*- coding: utf-8 -*-
 import shutil as sh
 import sys
 from subprocess import run, CalledProcessError
 import os
 import re
 
-from ..logger import log_message
+
+# --- LOGGING MESSAGE ---
+def log_message(message: str, level: str = "info") -> None:
+    prefixes = {
+        "info": "\U0001f4cd",  # 📍
+        "success": "\U0001f4e6",  # 📦
+        "error": "\u274c",  # ❌
+    }
+
+    print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
+
 
 # --- VARIABLES ---
 CONAN = sh.which("conan")
@@ -136,6 +146,7 @@ def install_package(lib: str):
         "install",
         ".",
         "--build=missing",
+        "-v",
         "--output-folder",
         build_dir,
         "--update",
@@ -151,7 +162,7 @@ def install_package(lib: str):
     except CalledProcessError as e:
         error_text = e.stderr.lower() if e.stderr else ""
         if any(x in error_text for x in ["opengl/system", "xorg/system"]):
-            log_message(f"🔧 {lib} req      istem graphics libraries", "info")
+            log_message(f"{lib} requires system graphics libraries", "info")
             print(
                 """Install it! Commands:
 Ubuntu/Debian:
