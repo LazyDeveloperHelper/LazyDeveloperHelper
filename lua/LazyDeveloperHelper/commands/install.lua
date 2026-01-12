@@ -23,7 +23,7 @@ function M.register()
         vim.notify("Detected filetype: " .. lang, vim.log.levels.INFO)
 
         local installers = {
-            python = "python_installers/pip_install.py",
+            python = "pip_install.py",
             lua = "luarocks_install.py",
             rust = "cargo_install.py",
             javascript = "npm_install.py",
