@@ -23,7 +23,8 @@ def find_vcpkg():
     if not vcpkg_path:
         log_message("vcpkg not found in PATH. Install it first!", "critical")
         print(
-            "Linux: git clone https://github.com/Microsoft/vcpkg && ./vcpkg/bootstrap-vcpkg.sh"
+            "Linux: \ngit clone https://github.com/Microsoft/vcpkg\n"
+            "./vcpkg/bootstrap-vcpkg.sh"
         )
         sys.exit(1)
 
@@ -36,9 +37,11 @@ def install_package(pkg: str):
     vcpkg_path = find_vcpkg()
     command = [vcpkg_path, "install", pkg]
     try:
-        subprocess.run(command, check=True, text=True, capture_output=True)
+        result = subprocess.run(command, check=True, text=True, capture_output=True)
         log_message(f"Installing: {pkg}")
-        return True
+        if "All requested installations completed successfully" in result.stdout:
+            log_message(f"Successfully installed {pkg}!")
+            return True
     except subprocess.CalledProcessError as e:
         log_message(f"Failed: {e.stderr}")
         return False
