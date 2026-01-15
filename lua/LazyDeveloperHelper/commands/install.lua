@@ -39,7 +39,7 @@ function M.register()
                 { label = "🔧 NuGet (C#)", value = "c_installers/nuget_install.py" },
             }, {
                 prompt = "Select C/C++ package manager:",
-                format_item = function(item) -- 🔥 FIXES table:0x BUG
+                format_item = function(item) -- Fixed: table:0x bug (was on local tests)
                     return item.label
                 end,
             }, function(choice)
@@ -89,9 +89,9 @@ function M.register()
                 table.insert(cmd_args, lang == "python" and "--quiet" or "-q")
             end
 
-            -- 🔥 FIXED: cd first, then execute (no dict in system())
+            -- FIXED LOCAL BUG: cd first, then execute (no dict in system())
             local cmd = "cd " .. vim.fn.shellescape(current_dir) .. " && python3 " .. table.concat(cmd_args, " ")
-            local result = vim.fn.system(cmd) -- ✅ NO 2nd ARG!
+            local result = vim.fn.system(cmd -- ✅ NO 2nd ARG!
 
             if vim.v.shell_error == 0 then
                 vim.notify("✅ Installed: " .. lib, vim.log.levels.INFO)
