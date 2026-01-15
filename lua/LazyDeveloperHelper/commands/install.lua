@@ -91,7 +91,7 @@ function M.register()
 
             -- FIXED LOCAL BUG: cd first, then execute (no dict in system())
             local cmd = "cd " .. vim.fn.shellescape(current_dir) .. " && python3 " .. table.concat(cmd_args, " ")
-            local result = vim.fn.system(cmd -- ✅ NO 2nd ARG!
+            local result = vim.fn.system(cmd)
 
             if vim.v.shell_error == 0 then
                 vim.notify("✅ Installed: " .. lib, vim.log.levels.INFO)
