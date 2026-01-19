@@ -1,7 +1,8 @@
 
 <h1 align="center">💫 Lazy Developer Helper</h1>
 <p align="center">
-	<img src="https://private-user-images.githubusercontent.com/92883017/398341064-8e684058-f3ea-4010-817e-529b47730abb.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Njg1NzcxNTUsIm5iZiI6MTc2ODU3Njg1NSwicGF0aCI6Ii85Mjg4MzAxNy8zOTgzNDEwNjQtOGU2ODQwNTgtZjNlYS00MDEwLTgxN2UtNTI5YjQ3NzMwYWJiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjAxMTYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwMTE2VDE1MjA1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU5YmQ2OGU3MzcyMGZiZWEyMTJhYjFkNjAwZDM1ZDA1OWJlMGQ2N2Y4MGQ4MmNiMzQxMjVjMzExMTg0MWI0NGQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.S3TP2axTVzXTXOYMQdQWeEBYCMcw6Znb7PvDU_gml70" alt="Neovim Logo" width="200" />
+	<img src="./images/neovim_logotype/neovim-logotype.png" alt="Neovim Logo" width="200" /><br>
+	(Image from: https://github.com/vyfor/cord.nvim)
 </p>
 
 
@@ -15,15 +16,15 @@
   <a href="https://github.com/Silletr/LazyDeveloperHelper/stargazers">
     <img src="https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper?style=for-the-badge&logo=neovim&logoColor=8281f3&color=8281f3&labelColor=242529" alt="GitHub Stars" />
   </a>
-	
+
   <a href="https://neovim.io/">
     <img src="https://img.shields.io/badge/Neovim-%3E%3D%200.11.5-ffffff?style=for-the-badge&logo=neovim&color=8281f3&labelColor=242529&logoColor=8281f3" alt="Neovim">
   </a>
-	
+
   <a href="https://github.com/Silletr/LazyDeveloperHelper/network/members">
     <img src="https://img.shields.io/github/forks/Silletr/LazyDeveloperHelper?style=for-the-badge&color=8281f3&labelColor=242529" alt="Forks">
   </a><br>
-	
+
   <img src="https://img.shields.io/github/license/Silletr/LazyDeveloperHelper?style=for-the-badge&color=8281f3&labelColor=242529" alt="License" />
   <img src="https://img.shields.io/github/last-commit/Silletr/LazyDeveloperHelper?style=for-the-badge&color=8281f3&labelColor=242529" alt="Last Commit" />
 </p>
