@@ -5,6 +5,7 @@ import sys
 from subprocess import run, CalledProcessError
 import os
 import re
+from packaging import version
 
 
 # --- LOGGING MESSAGE ---
@@ -36,95 +37,47 @@ def conan_exist():
 # Helpers
 # -------
 def resolve_package_name(package):
-    """
-    If only name is given (e.g. "spdlog"), resolve latest version from ConanCenter.
-    If full name+version (e.g. "spdlog/1.14.1") — return as-is.
-    """
     if "/" in package:
         return package
 
     log_message(f"Resolving latest version for {package}...", "info")
-    try:
-        result = run(
-            ["conan", "search", f"{package}/*", "--remote=conancenter"],
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-
-        if result.returncode != 0:
-            log_message(f"Package {package} not found on ConanCenter", "error")
-            return package
-
-        versions = []
-        for line in result.stdout.splitlines():
-            line = line.strip()
-            if line and "/" in line and line.startswith(package + "/"):
-                version_match = re.match(rf"{package}/([^/\s]+)", line)
-                if version_match:
-                    version = version_match.group(1)
-                    versions.append(version)
-
-        if versions:
-            latest_version = sorted(versions)[-1]
-            full_name = f"{package}/{latest_version}"
-            log_message(f"Resolved version → {full_name}", "success")
-            return full_name
-        else:
-            log_message(f"No versions found for {package}", "error")
-            return package
-
-    except Exception as e:
-        log_message(f"Failed to resolve version: {e}", "error")
-        return package
-
-
-def update_conanfile_requires(package_full_name):
-    """Update conanfile.txt with the package requirement"""
-    lib_short = package_full_name.split("/")[0]
-    if not os.path.exists("conanfile.txt"):
-        with open("conanfile.txt", "w") as f:
-            f.write("[requires]\n")
-            f.write(f"{package_full_name}\n\n")
-            f.write("[generators]\nCMakeDeps\nCMakeToolchain\n\n")
-            f.write("[options]\n*:shared=False\n\n")
-            f.write("[imports]\n., * -> ./bin @ keep_path=False\n")
-        return True
-
-    with open("conanfile.txt", "r") as f:
-        content = f.read()
-        lines = content.splitlines()
-
-    package_exists = any(
-        line.strip().startswith(f"{lib_short}/")
-        for line in lines
-        if line.strip() and not line.startswith("[")
+    result = run(
+        ["conan", "search", package, "--remote=conancenter"],
+        capture_output=True,
+        text=True,
+        check=False,
     )
 
-    if not package_exists:
-        new_lines = []
-        requires_section_found = False
-        requires_content_added = False
-        for line in lines:
-            new_lines.append(line)
-            if line.strip() == "[requires]" and not requires_section_found:
-                requires_section_found = True
-            elif requires_section_found and not requires_content_added:
-                if line.strip() == "" or line.strip().startswith("["):
-                    new_lines.append(package_full_name)
-                    requires_content_added = True
-        if requires_section_found and not requires_content_added:
-            new_lines.append(package_full_name)
+    versions = []
+    for line in result.stdout.splitlines():
+        line = line.strip()
+        match = re.search(rf"{package}/([^/\s]+)", line)
+        if match:
+            versions.append(match.group(1))
 
-        if not requires_section_found:
-            new_lines.append("[requires]")
-            new_lines.append(package_full_name)
-            new_lines.append("")
+    if versions:
+        latest_version = max(versions, key=version.parse)
+        full_name = f"{package}/{latest_version}"
+        log_message(f"Resolved version → {full_name}", "success")
+        return full_name
+    log_message(f"No versions found for {package}", "error")
+    return package
 
-        with open("conanfile.txt", "w") as f:
-            f.write("\n".join(new_lines) + "\n")
-        return True
-    return False
+
+# !!! FORCE UPDATING CONANFILE !!!
+# TODO: Fix in future by replacing more safe method
+def update_conanfile_requires(package_full_name):
+    """FORCE UPDATE conanfile.txt - always latest version
+    BE CAREFUL WITH USING THIS, IF YOU DONT WANT TO LOSE ALL YOUR..
+    ..PREVIOUSLY ADDED LIBS"""
+    log_message(f"Updating conanfile.txt → {package_full_name}", "info")
+    with open("conanfile.txt", "w") as f:
+        f.write("[requires]\n")
+        f.write(f"{package_full_name}\n\n")
+        f.write("[generators]\nCMakeDeps\nCMakeToolchain\n\n")
+        f.write("[options]\n*:shared=False\n\n")
+        f.write("[imports]\n., * -> ./bin @ keep_path=False\n")
+    return True
 
 
 # --- INSTALLING FUNCTION ---
