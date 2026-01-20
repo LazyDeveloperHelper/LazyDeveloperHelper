@@ -143,12 +143,10 @@ def install_package(lib: str):
     try:
         run(cmd, check=True, text=True, capture_output=True)
         if os.path.exists(build_dir) and any(os.listdir(build_dir)):
-            log_message(f"✅ {lib} successfully installed → {
-                        build_dir}/", "success")
+            log_message(f"✅ {lib} successfully installed → {build_dir}/", "success")
             log_message(f"To remove: rm -rf {build_dir}/", "info")
         else:
-            log_message(f"⚠️ Installation completed but {
-                        build_dir} is empty", "info")
+            log_message(f"⚠️ Installation completed but {build_dir} is empty", "info")
     except CalledProcessError as e:
         error_text = e.stderr.lower() if e.stderr else ""
         if any(x in error_text for x in ["opengl/system", "xorg/system"]):
@@ -184,8 +182,7 @@ def main() -> None:
         log_message("Examples:", "info")
         log_message("  python conan_installer.py spdlog fmt", "info")
         log_message("  python conan_installer.py zlib boost", "info")
-        log_message(
-            "  python conan_installer.py spdlog/1.12.0 fmt/9.1.0", "info")
+        log_message("  python conan_installer.py spdlog/1.12.0 fmt/9.1.0", "info")
         sys.exit(1)
 
     for lib in sys.argv[1:]:
