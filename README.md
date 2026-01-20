@@ -1,4 +1,11 @@
+
 <h1 align="center">💫 Lazy Developer Helper</h1>
+<p align="center">
+	<img src="./images/neovim_logotype/neovim-logotype.png" alt="Neovim Logo" width="200" /><br>
+	(Image from: https://github.com/vyfor/cord.nvim)
+</p>
+
+
 
 <p align="center">
   Automation tools for lazy developers.<br/>
@@ -6,9 +13,20 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper" alt="Stars" />
-  <img src="https://img.shields.io/github/license/Silletr/LazyDeveloperHelper" alt="License" />
-  <img src="https://img.shields.io/github/last-commit/Silletr/LazyDeveloperHelper" alt="Last Commit" />
+  <a href="https://github.com/Silletr/LazyDeveloperHelper/stargazers">
+    <img src="https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper?style=for-the-badge&logo=neovim&logoColor=8281f3&color=8281f3&labelColor=242529" alt="GitHub Stars" />
+  </a>
+
+  <a href="https://neovim.io/">
+    <img src="https://img.shields.io/badge/Neovim-%3E%3D%200.11.5-ffffff?style=for-the-badge&logo=neovim&color=8281f3&labelColor=242529&logoColor=8281f3" alt="Neovim">
+  </a>
+
+  <a href="https://github.com/Silletr/LazyDeveloperHelper/network/members">
+    <img src="https://img.shields.io/github/forks/Silletr/LazyDeveloperHelper?style=for-the-badge&color=8281f3&labelColor=242529" alt="Forks">
+  </a><br>
+
+  <img src="https://img.shields.io/github/license/Silletr/LazyDeveloperHelper?style=for-the-badge&color=8281f3&labelColor=242529" alt="License" />
+  <img src="https://img.shields.io/github/last-commit/Silletr/LazyDeveloperHelper?style=for-the-badge&color=8281f3&labelColor=242529" alt="Last Commit" />
 </p>
 
 <p align="center">
@@ -65,12 +83,14 @@ Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 	- 6. *C via Conan*
 	- 7. *Ruby via Ruby-Gem*
 	- 8. *Lua via Luarocks*
+
 ...dependencies directly from your editor, eliminating the need to switch to the terminal.
+
 And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 
 ## Features
-1. - ✨ Install Python, Lua, Javascript, Ruby, Rust packages directly from Neovim,
+1. - ✨ Install Python, Lua, Javascript, Ruby, Rust, Java,  packages directly from Neovim,
 2. - ✨ Manage dependencies without leaving your editor,
 3. - ✨ Compatible with modern Neovim configurations
 
@@ -128,4 +148,4 @@ Example output:
 ![Alt](https://repobeats.axiom.co/api/embed/91c0a59ebb003b31f4184cc769db134500a0fde8.svg "Repobeats analytics image")
 
 ## Plugin History
-![If you want to know more - read the plugin history!](./PLUGIN_HISTORY.md)
+[If you want to know more - read the plugin history!](./PLUGIN_HISTORY.md)

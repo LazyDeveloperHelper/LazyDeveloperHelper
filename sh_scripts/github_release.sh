@@ -1,4 +1,5 @@
 github_release() {
+	ORIGINAL_DIR=$(pwd)
 	echo "[*] Preparing clean release…"
 
 	rm -rf /tmp/ldh_release
@@ -17,17 +18,18 @@ github_release() {
 
 	echo "[*] Copying README.md, LICENSE files"
 	cp README.md /tmp/ldh_release/LazyDeveloperHelper/
-	cp commit_generation.py /tmp/ldh_release/LazyDeveloperHelper/
 	cp LICENSE /tmp/ldh_release/LazyDeveloperHelper/
 
 	echo "[*] Zipping to /tmp/ldh_release:"
 	cd /tmp/ldh_release
 	zip -r LazyDeveloperHelper.zip LazyDeveloperHelper >/dev/null
 
-	echo "[*] Moving archive to LazyDeveloperHelper/dist:"
-	mkdir -p ./dist
-	mv LazyDeveloperHelper.zip ./dist/
+	echo "[*] Moving archive to original dist:"
+	mkdir -p "$ORIGINAL_DIR/dist"
+	mv LazyDeveloperHelper.zip "$ORIGINAL_DIR/dist/"
 
 	echo "[✓] Done. Clean .zip is in dist/, size:"
-	du -h dist/LazyDeveloperHelper.zip
+	du -h "$ORIGINAL_DIR/dist/LazyDeveloperHelper.zip"
+
+	cd "$ORIGINAL_DIR"
 }
