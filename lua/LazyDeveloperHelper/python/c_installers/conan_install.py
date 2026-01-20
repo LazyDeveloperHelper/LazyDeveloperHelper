@@ -64,19 +64,54 @@ def resolve_package_name(package):
     return package
 
 
-# !!! FORCE UPDATING CONANFILE !!!
-# TODO: Fix in future by replacing more safe method
 def update_conanfile_requires(package_full_name):
-    """FORCE UPDATE conanfile.txt - always latest version
-    BE CAREFUL WITH USING THIS, IF YOU DONT WANT TO LOSE ALL YOUR..
-    ..PREVIOUSLY ADDED LIBS"""
-    log_message(f"Updating conanfile.txt → {package_full_name}", "info")
+    """Update conanfile.txt - KEEP only latest version of each package"""
+    lib_short = package_full_name.split("/")[0]  # "fmt"
+    full_version = package_full_name.split("/")[-1]  # "12.1.0"
+
+    if not os.path.exists("conanfile.txt"):
+        # Create new
+        with open("conanfile.txt", "w") as f:
+            f.write("[requires]\n")
+            f.write(f"{package_full_name}\n\n")
+            f.write("[generators]\nCMakeDeps\nCMakeToolchain\n\n")
+            f.write("[options]\n*:shared=False\n\n")
+            f.write("[imports]\n., * -> ./bin @ keep_path=False\n")
+        return True
+
+    requires_lines = []
+    with open("conanfile.txt", "r") as f:
+        in_requires = False
+        for line in f:
+            line = line.strip()
+            if line == "[requires]":
+                in_requires = True
+                requires_lines.append(line)
+                continue
+            if in_requires and line.startswith("["):
+                in_requires = False
+            if in_requires and line and "/" in line:
+                existing_pkg = line.split("/")[0]
+                if existing_pkg == lib_short:
+                    if version.parse(full_version) > version.parse(line.split("/")[-1]):
+                        # Update last line
+                        requires_lines[-1] = package_full_name
+                        return True
+                    return False  # Existing is newer
+                requires_lines.append(line)
+            elif in_requires:
+                requires_lines.append(line)
+
+    # Rewrite with updated requires
     with open("conanfile.txt", "w") as f:
         f.write("[requires]\n")
-        f.write(f"{package_full_name}\n\n")
-        f.write("[generators]\nCMakeDeps\nCMakeToolchain\n\n")
+        for line in requires_lines:
+            if line.strip():
+                f.write(f"{line}\n")
+        f.write("\n[generators]\nCMakeDeps\nCMakeToolchain\n\n")
         f.write("[options]\n*:shared=False\n\n")
         f.write("[imports]\n., * -> ./bin @ keep_path=False\n")
+
     return True
 
 
