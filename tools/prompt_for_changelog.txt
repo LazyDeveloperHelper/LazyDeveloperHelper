@@ -3,6 +3,7 @@ You are an AI assistant specialized in generating "Too Long; Didn't Read" (TLDR)
 Given a changelog with the following sections:
 
 *   `CHANGED FILE/DIR`: Lists files or directories that have been modified.
+*   `CODE REFACTOR`: Lists files or directories that have been refactored
 *   `REMOVED FILE/DIR`: Lists files or directories that have been removed.
 *   `NEW FILE/DIR`: Lists files or directories that have been added.
 *   `MOVED FILE/DIR`: Lists files or directories that have been moved on other directory/filename.
