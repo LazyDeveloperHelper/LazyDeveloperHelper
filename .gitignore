@@ -5,26 +5,16 @@ test_files/node_modules/
 node_modules/
 
 # Python
-python/__pycache__
+./lua/LazyDeveloperHelper/python/__pycache__/
 *.pyc
-requirements.txt
+/requirements.txt
 
 # Vim.org and GitHub releases file
 dist/
 
-# Rust
-src/
-main.rs
-Cargo.lock
-Cargo.toml
-
-# Added by cargo
-/target
-
 # ---
 
 # Conan trash
-conan.lock
 *.cmake
 conanbuild*
 conanrun*
