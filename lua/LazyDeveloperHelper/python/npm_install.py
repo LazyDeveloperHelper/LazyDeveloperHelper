@@ -40,6 +40,7 @@ def install_npm(lib: str) -> None:
             stderr=PIPE,
             text=True,
             check=True,
+            capture_output=True,
         )
         # If list contains package name — treat as installed
         if lib in (result.stdout or ""):

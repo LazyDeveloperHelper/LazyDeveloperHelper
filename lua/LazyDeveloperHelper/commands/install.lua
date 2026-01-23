@@ -89,17 +89,32 @@ function M.register()
                 table.insert(cmd_args, lang == "python" and "--quiet" or "-q")
             end
 
-            -- FIXED LOCAL BUG: cd first, then execute (no dict in system())
-            local cmd = "cd " .. vim.fn.shellescape(current_dir) .. " && python3 " .. table.concat(cmd_args, " ")
-            local result = vim.fn.system(cmd)
-
-            if vim.v.shell_error == 0 then
-                vim.notify("✅ Installed: " .. lib, vim.log.levels.INFO)
-            else
-                vim.notify("❌ Failed: " .. lib .. "\n" .. result, vim.log.levels.ERROR)
-            end
+            vim.system(cmd_args, {
+                cwd = current_dir,
+                stdout = function(err, data)
+                    if data then
+                        vim.schedule(function()
+                            vim.api.nvim_echo({ { data, "Normal" } }, false, {})
+                        end)
+                    end
+                end,
+                stderr = function(err, data)
+                    if data then
+                        vim.schedule(function()
+                            vim.api.nvim_echo({ { data, "ErrorMsg" } }, false, {})
+                        end)
+                    end
+                end,
+            }, function(obj)
+                vim.schedule(function()
+                    if obj.code == 0 then
+                        vim.notify("✅ Installed: " .. lib, vim.log.levels.INFO)
+                    else
+                        vim.notify("❌ Failed: " .. lib .. " (code " .. obj.code .. ")", vim.log.levels.ERROR)
+                    end
+                end)
+            end)
         end
-
         for _, lib in ipairs(args) do
             execute_install(lib)
         end
