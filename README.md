@@ -69,6 +69,7 @@
 <video src="https://github.com/Silletr/LazyDeveloperHelper/raw/master/images/examples/ldh_video_example.mp4" controls width="100%" autoplay muted loop playsinline>
   Your browser does not support the video tag.
 </video>
+
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 
