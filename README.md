@@ -66,7 +66,7 @@
 <!-- tocstop -->
 
 ## Video example
-<video src="https://github.com/Silletr/LazyDeveloperHelper/raw/master/images/examples/ldh_video_example.mp4" controls width="100%" autoplay muted loop playsinline>
+<video src="https://github.com/LazyDeveloperHelper/LazyDeveloperHelper/blob/33d43e50906f88424c66e540a6682bb99555f6be/images/examples/ldh_video_example.mp4" controls width="100%" autoplay muted loop playsinline>
   Your browser does not support the video tag.
 </video>
 
