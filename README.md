@@ -66,9 +66,11 @@
 <!-- tocstop -->
 
 ## Video example
-<video src="https://github.com/LazyDeveloperHelper/LazyDeveloperHelper/blob/33d43e50906f88424c66e540a6682bb99555f6be/images/examples/ldh_video_example.mp4" controls width="100%" autoplay muted loop playsinline>
-  Your browser does not support the video tag.
-</video>
+> [!IMPORTANT]  
+> Sorry, but Github cant handle this file, and I dont want to decrease quality and FPS, so I just pin the link to file here:
+
+![Example](./images/examples/ldh_video_example.mp4)
+
 
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
