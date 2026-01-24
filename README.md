@@ -67,10 +67,11 @@
 
 ## Video example
 > [!IMPORTANT]  
-> Sorry, but Github cant handle this file, and I dont want to decrease quality and FPS, so I just pin the link to file here:
+> Sorry, but Github cant handle this file, and I dont want to decrease quality (well.. sometimes xD) and FPS, so I just pin the link to video here:
 
-![Example](https://youtu.be/pH86IEqpqAk)
-
+<a href="https://youtu.be/pH86IEqpqAk" target="_blank">
+    <img src="https://img.youtube.com/vi/pH86IEqpqAk/0.jpg" alt="Example video">
+</a>
 
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
