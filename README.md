@@ -69,7 +69,7 @@
 > [!IMPORTANT]  
 > Sorry, but Github cant handle this file, and I dont want to decrease quality and FPS, so I just pin the link to file here:
 
-![Example](./images/examples/ldh_video_example.mp4)
+![Example](https://youtu.be/pH86IEqpqAk)
 
 
 ## Status
