@@ -1,0 +1,7 @@
+[package]
+name = "test_cargo"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+syn = "2.0.114"

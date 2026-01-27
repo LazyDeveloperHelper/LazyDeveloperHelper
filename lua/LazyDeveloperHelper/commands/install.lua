@@ -23,15 +23,15 @@ function M.register()
         vim.notify("Detected filetype: " .. lang, vim.log.levels.INFO)
 
         local installers = {
-            python = "pip_install.py",
-            lua = "luarocks_install.py",
+            -- python = "pip_install.py",
+            -- lua = "luarocks_install.py",
             rust = "cargo_install.py",
-            javascript = "npm_install.py",
-            ruby = "ruby_gem_install.py",
-            kotlin = "java_installer/gradle_install.py",
-            go = "go_installer/go_installer.py",
+            -- javascript = "npm_install.py",
+            -- ruby = "ruby_gem_install.py",
+            -- kotlin = "java_installer/gradle_install.py",
+            -- go = "go_installer/go_installer.py",
         }
-
+        --[[
         if lang == "c" or lang == "cpp" then
             vim.ui.select({
                 { label = "📦 vcpkg (C/C++)", value = "c_installers/vcpkg_install.py" },
@@ -51,6 +51,7 @@ function M.register()
             end)
             return
         end
+        ]]
 
         local script_name = installers[lang]
         if not script_name then
