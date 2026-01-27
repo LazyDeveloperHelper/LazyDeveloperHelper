@@ -1,11 +1,9 @@
 
 <h1 align="center">💫 Lazy Developer Helper</h1>
 <p align="center">
-	<img src="./images/neovim_logotype/neovim-logotype.png" alt="Neovim Logo" width="200" /><br>
-	(Image from: https://github.com/vyfor/cord.nvim)
+ <img src="./images/neovim_logotype/neovim-logotype.png" alt="Neovim Logo" width="200" /><br>
+ <b>Image from from: https://github.com/vyfor/cord.nvim</b>
 </p>
-
-
 
 <p align="center">
   Automation tools for lazy developers.<br/>
@@ -50,6 +48,7 @@
 </p>
 
 ---
+
 ## Contents
 <!-- toc -->
 - [Video example](#video-example)
@@ -59,14 +58,15 @@
 - [Future Features](#future-features)
 - [Roadmap](#roadmap)
 - [Install using Packer](#install-using-packer)
-- [Install using Lazy](#install-using-Lazy)
+- [Install using Lazy](#install-using-lazy)
 - [Avaible in](#available-in)
 - [Usage](#usage)
 - [Plugin History](#plugin-history)
 <!-- tocstop -->
 
 ## Video example
-> [!IMPORTANT]  
+>
+> [!IMPORTANT]
 > Sorry, but Github cant handle this file, and I dont want to decrease quality (well.. sometimes xD) and FPS, so I just pin the link to video here:
 
 <a href="https://youtu.be/pH86IEqpqAk" target="_blank">
@@ -74,52 +74,57 @@
 </a>
 
 ## Status
+
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 
-
 ## Introduction
+
 *Have you ever found yourself adding multiple dependencies to your code before installing them?* **Do you hate switching between your editor and terminal for installing libs?** 🤔
 
 **LazyDeveloperHelper solves this problem!** It's a Neovim plugin that lets you manage:
-  - 1. *Python via pip*
-  - 2. *Rust via Cargo*
-  - 3. *Kotlin/Groovy via Gradle with Maven-Central*
-  - 4. *JavaScript via npm*
-  - 5. *C++ via Nuget* (In future will be used `vim.ui.select` for choose cause will be added Vckpg)
-	- 6. *C via Conan*
-	- 7. *Ruby via Ruby-Gem*
-	- 8. *Lua via Luarocks*
+
+- 1. *Python via pip*
+- 1. *Rust via Cargo*
+- 1. *Kotlin/Groovy via Gradle with Maven-Central*
+- 1. *JavaScript via npm*
+- 1. *C++ via Nuget* (In future will be used `vim.ui.select` for choose cause will be added Vckpg)
+ 	- 1. *C via Conan*
+ 	- 1. *Ruby via Ruby-Gem*
+ 	- 1. *Lua via Luarocks*
 
 ...dependencies directly from your editor, eliminating the need to switch to the terminal.
 
 And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
-
 ## Features
+
 1. - ✨ Install Python, Lua, Javascript, Ruby, Rust, Java,  packages directly from Neovim,
 2. - ✨ Manage dependencies without leaving your editor,
 3. - ✨ Compatible with modern Neovim configurations
 
 ## Future Features
+
 (As of 20.10.25 8:14 PM its list clear, i`ll do just small fixes, maybe)
 
 - [x] (1:01, 21.10.2024) - will be added installing libs right from requirements.txt for python, or from Cargo.toml ([Dependencies] block on corresponding file) <- Completed in 21.10.2025 15:00
 
 ## Roadmap
+
 If you wanna to see roadmap for 2026 and current year (2025, if you forget) - this for you:
 [Go to Roadmap.sh](https://roadmap.sh/r/lazydeveloperhelper-roadmap-for-2026-year)
 
-
 ## Available in
+
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
 - [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#dependency-management)
 - [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDeveloperHelper)
 - Store.nvim (from recently)
 
-
 ### Installation Methods
+
 ## Install using Packer
+
 ```lua
   use {
     'Silletr/LazyDevHelper',
@@ -128,9 +133,11 @@ If you wanna to see roadmap for 2026 and current year (2025, if you forget) - th
     end
   }
 ```
+
 Then: `:PackerSync`
 
 ## Install using Lazy
+
 ```lua
 return {
     "Silletr/LazyDeveloperHelper",
@@ -139,19 +146,20 @@ return {
     end
   }
 ```
+
 Then: `:Lazy sync`
 
-
-
 ## Usage
+
 Command example:
 ![Command example](https://github.com/Silletr/LazyDeveloperHelper/blob/ee3d4c47e690170a6ca3c28e523bdb035909ea6a/images/examples/command_example.png)
 ---
+
 Example output:
 ![Installation Output](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/output_example.png)
-
 
 ![Alt](https://repobeats.axiom.co/api/embed/91c0a59ebb003b31f4184cc769db134500a0fde8.svg "Repobeats analytics image")
 
 ## Plugin History
+
 [If you want to know more - read the plugin history!](./PLUGIN_HISTORY.md)

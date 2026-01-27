@@ -129,7 +129,6 @@ def install_lib(
 
 # --- MAIN FUNCTION ---
 def main() -> None:
-    print(">>> pip_install started <<<")
     if len(sys.argv) < 2:
         log_message("Provide at least one library name", "error")
         sys.exit(1)
@@ -139,7 +138,7 @@ def main() -> None:
     libs_to_install = []
 
     for arg in sys.argv[1:]:
-        if arg == "-quiet":
+        if arg == "-quiet" or arg == "--quiet":
             quiet = True
         else:
             libs_to_install.append(arg)
