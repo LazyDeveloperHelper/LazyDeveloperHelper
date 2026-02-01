@@ -8,13 +8,15 @@ from ..pip_install import check_pip_installed, install_lib
 @patch("shutil.which")
 def test_pip_installed_success(mock_which):
     mock_which.return_value = "/usr/bin/pip3"
-    assert check_pip_installed() is True
+    if not (check_pip_installed() is True):
+        raise AssertionError
 
 
 @patch("shutil.which")
 def test_pip_installed_failure(mock_which):
     mock_which.return_value = None
-    assert check_pip_installed() is False
+    if check_pip_installed() is not False:
+        raise AssertionError
 
 
 @patch("subprocess.run")
@@ -38,7 +40,8 @@ def test_install_lib_success_new_file(mock_open, mock_exists, mock_run):
 
     mock_open.assert_any_call("requirements.txt", "w", encoding="utf-8")
     mock_open.assert_any_call("requirements.txt", "a", encoding="utf-8")
-    assert "requests" in libs_list
+    if "requests" not in libs_list:
+        raise AssertionError
 
 
 @patch("subprocess.run")
@@ -52,8 +55,10 @@ def test_install_lib_already_installed(mock_exists, mock_run):
     libs_list: Set[str] = {"requests"}
     install_lib("requests", libs_list)
 
-    assert mock_run.called is True
-    assert len(libs_list) == 1
+    if not mock_run.called is True:
+        raise AssertionError
+    if not len(libs_list) == 1:
+        raise AssertionError
 
 
 @patch("subprocess.run")
