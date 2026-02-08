@@ -11,6 +11,7 @@
 | < 4.0   | :white_check_mark:                |
 
 ## Reporting a Vulnerability
+
 1. Create Issue by needed for you template
 2. Describe your system info (by `fast-` or `neofetch` e.g)
 3. Describe your issue and how you managed to cause this error
