@@ -16,15 +16,15 @@
 
 <b>Status as of 16/07/2025</b>:
 
-*Our first 100 downloads! Thanks you all, guys!*
+_Our first 100 downloads! Thanks you all, guys!_
 ![downloads screenshot](images/downloads.png)
 
 <b>Status as of 23/07/2025</b>:
 
-*Recently added JavaScript libraries manager, I need 2 weeks break, so I will return at 06/07/2025*
+_Recently added JavaScript libraries manager, I need 2 weeks break, so I will return at 06/07/2025_
 
 <b>Status as of 18.08.2025</b>:
-*Almost 300 downloads guys! Thats was too fast, and i will add the C-lang support soon, so prepare for new wave of updates!*
+_Almost 300 downloads guys! Thats was too fast, and i will add the C-lang support soon, so prepare for new wave of updates!_
 
 ![downloading stats](images/295_downloading.png)
 
@@ -33,7 +33,7 @@
 Already 400 downloads! Thats impressive, thanks you all for this, and I have one news - i will try go back to this repository because i need fix some problems in my live, so i will unactive on this project
 
 <b>Status as of 07.09.2025</b>:
-*Already 600 downloads, thats fucking fast, and thanks for 8 rating! From now i will try to combinate school & code & my life, so updates will be, but not too much as it was before! Thanks for this all!*
+_Already 600 downloads, thats fucking fast, and thanks for 8 rating! From now i will try to combinate school & code & my life, so updates will be, but not too much as it was before! Thanks for this all!_
 
 ![downloads stat](images/almost_600_downloads.png)
 
@@ -47,9 +47,10 @@ Sorry!
 ![790 downloads](./images/790_downloads.png)
 I was afk too much time, but already downloading this - thank for downloadings, and I think i can go back to projects, but I need time for some adaptive period to coding, school, my new sleep-mode, and just day schedule.
 Thanks for attention, i going to sleep (its now 0:50)
+
 ---
 
 <b>Status as of 20/10/2025</b>:
 ![1000 downloads](./images/downloads_count/1000_downloads)
-y`all fucking amazing guys, u know? Even when i AFK too much - you still downloading my plugin (which, will honest, not too good (maybe thats just my vision and i started race with me for better project in my live, but  idk)), someone even taking this plugin a rating in [vim website](https://www.vim.org/scripts/script.php?script_id=6156) (btw, thanks u guys), and thats a **fucking too much**
+y`all fucking amazing guys, u know? Even when i AFK too much - you still downloading my plugin (which, will honest, not too good (maybe thats just my vision and i started race with me for better project in my live, but idk)), someone even taking this plugin a rating in [vim website](https://www.vim.org/scripts/script.php?script_id=6156) (btw, thanks u guys), and thats a **fucking too much**
 And i wanna tell you history, how this plugin was thinked up (but it will be in README in "Plugin history" section, sorry
