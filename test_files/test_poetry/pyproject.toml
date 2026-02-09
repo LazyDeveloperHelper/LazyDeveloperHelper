@@ -1,0 +1,18 @@
+[project]
+name = "python-installers"
+version = "0.1.0"
+description = "Just a test of LazyDeveloperHelper - Poetry installer"
+authors = [
+    {name = "silletr@duck.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests (>=2.32.5,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

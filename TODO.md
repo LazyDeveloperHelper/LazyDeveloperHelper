@@ -41,4 +41,4 @@ New point (01.11.2025, 13:25):
 
 - [x] Add C++, C# support
 - [x] Add Java support (by gradle + MavenCentral)
-- [ ] Add Go Support
+- [x] Add Go Support (08.02.2026 - idk when tf i did it, but for now - queue of this project to develop)
