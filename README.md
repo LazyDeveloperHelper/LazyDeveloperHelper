@@ -2,7 +2,7 @@
 <h1 align="center">💫 Lazy Developer Helper</h1>
 <p align="center">
  <img src="./images/neovim_logotype/neovim-logotype.png" alt="Neovim Logo" width="200" /><br>
- (Image from: https://github.com/vyfor/cord.nvim)
+ <b>Image from from: https://github.com/vyfor/cord.nvim</b>
 </p>
 
 <p align="center">

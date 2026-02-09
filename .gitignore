@@ -15,7 +15,6 @@ dist/
 # --- Rust
 test_files/test_cargo/target/
 
-
 # Conan trash
 *.cmake
 conanbuild*
