@@ -7,14 +7,8 @@ github_release() {
 
 	echo "[*] Copying required files:"
 
-	cp -r lua/LazyDeveloperHelper/commands/ /tmp/ldh_release/LazyDeveloperHelper/
-	cp -r lua/LazyDeveloperHelper/init.lua /tmp/ldh_release/LazyDeveloperHelper/
-	cp -r lua/LazyDeveloperHelper/python /tmp/ldh_release/LazyDeveloperHelper/
-	cp -r plugin/ /tmp/ldh_release/LazyDeveloperHelper/
+	cp -r lua/LazyDeveloperHelper/ /tmp/ldh_release/LazyDeveloperHelper/
 	cp -r CHANGELOG.md /tmp/ldh_release/LazyDeveloperHelper/
-
-	echo "[*] Copying files for test workability"
-	cp -r test_files/test.* /tmp/ldh_release/LazyDeveloperHelper/
 
 	echo "[*] Copying README.md, LICENSE files"
 	cp README.md /tmp/ldh_release/LazyDeveloperHelper/
