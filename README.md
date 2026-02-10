@@ -1,4 +1,3 @@
-
 <h1 align="center">💫 Lazy Developer Helper</h1>
 <p align="center">
  <img src="./images/neovim_logotype/neovim-logotype.png" alt="Neovim Logo" width="200" /><br>
@@ -50,22 +49,27 @@
 ---
 
 ## Contents
+
 <!-- toc -->
+
 - [Video example](#video-example)
 - [Status](#status)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Future Features](#future-features)
 - [Roadmap](#roadmap)
+- [Available in](#available-in)
+	* [Installation Methods](#installation-methods)
 - [Install using Packer](#install-using-packer)
 - [Install using Lazy](#install-using-lazy)
-- [Avaible in](#available-in)
 - [Usage](#usage)
+- [How to Support Me](#how-to-support-me)
 - [Plugin History](#plugin-history)
+
 <!-- tocstop -->
 
 ## Video example
->
+
 > [!IMPORTANT]
 > Sorry, but Github cant handle this file, and I dont want to decrease quality (well.. sometimes xD) and FPS, so I just pin the link to video here:
 
@@ -79,18 +83,18 @@ Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 
 ## Introduction
 
-*Have you ever found yourself adding multiple dependencies to your code before installing them?* **Do you hate switching between your editor and terminal for installing libs?** 🤔
+_Have you ever found yourself adding multiple dependencies to your code before installing them?_ **Do you hate switching between your editor and terminal for installing libs?** 🤔
 
 **LazyDeveloperHelper solves this problem!** It's a Neovim plugin that lets you manage:
 
-- 1. *Python via pip*
-- 1. *Rust via Cargo*
-- 1. *Kotlin/Groovy via Gradle with Maven-Central*
-- 1. *JavaScript via npm*
-- 1. *C++ via Nuget* (In future will be used `vim.ui.select` for choose cause will be added Vckpg)
- 	- 1. *C via Conan*
- 	- 1. *Ruby via Ruby-Gem*
- 	- 1. *Lua via Luarocks*
+- 1. _Python via pip_
+- 1. _Rust via Cargo_
+- 1. _Kotlin/Groovy via Gradle with Maven-Central_
+- 1. _JavaScript via npm_
+- 1. _C++ via Nuget_ (In future will be used `vim.ui.select` for choose cause will be added Vckpg)
+  - 1. _C via Conan_
+  - 1. _Ruby via Ruby-Gem_
+  - 1. _Lua via Luarocks_
 
 ...dependencies directly from your editor, eliminating the need to switch to the terminal.
 
@@ -98,7 +102,7 @@ And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 ## Features
 
-1. - ✨ Install Python, Lua, Javascript, Ruby, Rust, Java,  packages directly from Neovim,
+1. - ✨ Install Python, Lua, Javascript, Ruby, Rust, Java, packages directly from Neovim,
 2. - ✨ Manage dependencies without leaving your editor,
 3. - ✨ Compatible with modern Neovim configurations
 
@@ -153,13 +157,19 @@ Then: `:Lazy sync`
 
 Command example:
 ![Command example](https://github.com/Silletr/LazyDeveloperHelper/blob/ee3d4c47e690170a6ca3c28e523bdb035909ea6a/images/examples/command_example.png)
+
 ---
 
 Example output:
 ![Installation Output](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/output_example.png)
 
-![Alt](https://repobeats.axiom.co/api/embed/91c0a59ebb003b31f4184cc769db134500a0fde8.svg "Repobeats analytics image")
+## How to Support Me
+
+**Well, if you want support me - just write `LazyDevDonation` and select method that you like!**
+**Thanks to everyone that can help economically!**
 
 ## Plugin History
 
 [If you want to know more - read the plugin history!](./PLUGIN_HISTORY.md)
+
+![Alt](https://repobeats.axiom.co/api/embed/91c0a59ebb003b31f4184cc769db134500a0fde8.svg "Repobeats analytics image")
