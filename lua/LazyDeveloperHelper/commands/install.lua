@@ -29,6 +29,7 @@ function M.register()
             ruby = "ruby_gem_install.py",
             kotlin = "java_installer/gradle_install.py",
             go = "go_installer/go_installer.py",
+            dart = "dart_install.py",
         }
 
         -- PYTHON AND C-like LANGUAGES INSTALLERS

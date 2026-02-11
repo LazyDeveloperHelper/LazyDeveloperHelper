@@ -3,6 +3,7 @@ from logger import log_message as logger
 from subprocess import run, CalledProcessError
 from shutil import which
 from pathlib import Path
+import sys
 
 
 # --- dart LOCATION ---
@@ -57,4 +58,10 @@ def install_package(package: str):
         raise
 
 
-install_package("googleapis")
+# --- MAIN ---
+if __name__ == "__main__":
+    if sys.argv[1]:
+        pkg = sys.argv[1]
+        install_package(pkg)
+    else:
+        logger("Provide any package!", "error")
