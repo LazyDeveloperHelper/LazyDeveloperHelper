@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
+
 # --- IMPORTS ---
 from logger import log_message as logger
 from subprocess import run, CalledProcessError
 from shutil import which
-from pathlib import Path
+import pathlib
 import sys
 
 
@@ -16,7 +18,7 @@ else:
 
 # --- ENSURE pubspec.yaml ---
 def ensure_pubspec_yaml():
-    pubspec_path = Path.cwd() / "pubspec.yaml"
+    pubspec_path = pathlib.Path.cwd() / "pubspec.yaml"
     if not pubspec_path.exists():
         logger("pubspec.yaml not found! Creating minimal one...", "info")
         minimal_content = """
@@ -60,7 +62,7 @@ def install_package(package: str):
 
 # --- MAIN ---
 if __name__ == "__main__":
-    if sys.argv[1]:
+    if len(sys.argv) > 1:
         pkg = sys.argv[1]
         install_package(pkg)
     else:
