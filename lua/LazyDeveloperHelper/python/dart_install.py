@@ -6,7 +6,8 @@ from subprocess import run, CalledProcessError
 from shutil import which
 import pathlib
 import sys
-
+import re
+import os
 
 # --- dart LOCATION ---
 dart = which("dart")
@@ -16,14 +17,14 @@ else:
     logger("Dart not found, install it in PATH!", "error")
 
 
-# --- ENSURE pubspec.yaml ---
+# --- HELPERS ---
 def ensure_pubspec_yaml():
     pubspec_path = pathlib.Path.cwd() / "pubspec.yaml"
     if not pubspec_path.exists():
         logger("pubspec.yaml not found! Creating minimal one...", "info")
         minimal_content = """
-name: lazydev_test_project
-description: Auto-created for LazyDeveloperHelper installer test
+name: LazyDeveloperHelper_Minimal_Config
+description: Auto-created for LazyDeveloperHelper[Dart] installer
 version: 1.0.0
 
 environment:
@@ -34,10 +35,22 @@ environment:
     else:
         logger("pubspec.yaml already exists")
 
+def is_package_installed(package: str) -> bool:
+    pubspec_path = os.path.join(os.getcwd(), "pubspec.yaml")
+    if not os.path.exists(pubspec_path):
+        return False
+    with open(pubspec_path, "r") as f:
+        content = f.read()
+    # Check if package name appears in dependencies section
+    return bool(re.search(rf'^\s+{re.escape(package)}:', content, re.MULTILINE))
+
 
 # --- INSTALL LIB ---
 def install_package(package: str):
     ensure_pubspec_yaml()
+    if is_package_installed(package):
+        logger(f"{package} is already installed, skipping", "success")
+        return
     cmd = [dart, "pub", "add", package]
     logger(f"Installing {package}...")
 

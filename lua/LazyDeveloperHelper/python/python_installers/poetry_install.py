@@ -13,7 +13,7 @@ PYPROJECT_TOML = "pyproject.toml"
 # --- CHECK poetry STATUS ---
 def check_poetry_installed() -> str:
     """Check if poetry is installed and available in PATH."""
-    poetry_path = str(which("poetry"))
+    poetry_path: str = str(which("poetry"))
     if poetry_path is None:
         log_message("Poetry is not installed or not found in PATH.", "error")
         return poetry_path
@@ -32,7 +32,7 @@ def log_message(message: str, level: str = "info"):
 
 
 # --- FIND pyproject.toml ---
-def find_pyproject(start_dir="."):
+def find_pyproject(start_dir: str ="."):
     """Find pyproject.toml in current or parent directories. Returns abs path or None."""
     cargo_path = os.path.join(start_dir, PYPROJECT_TOML)  # Typo fix: pyproject
     if os.path.exists(cargo_path):
@@ -58,10 +58,10 @@ def find_pyproject(start_dir="."):
 def install_package(package: str):
     if not check_poetry_installed():
         return
-    poetry_path = check_poetry_installed()
-    cmd = [poetry_path, "add", package]
+    poetry_path: str = check_poetry_installed()
+    cmd: list[str] = [poetry_path, "add", package]
     try:
-        run(cmd, check=True, capture_output=True, text=True)
+        run(args=cmd, check=True, capture_output=True, text=True)
         log_message(f"{package} installed/added.", "success")
     except CalledProcessError as e:
         log_message(f"Failed: {e.stderr}", "error")
