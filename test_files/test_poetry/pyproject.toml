@@ -1,15 +1,13 @@
 [project]
-name = "python-installers"
+name = "test-poetry"
 version = "0.1.0"
-description = "Just a test of LazyDeveloperHelper - Poetry installer"
+description = ""
 authors = [
-    {name = "silletr@duck.com"}
+    {name = "Silletr",email = "silletr@duck.com"}
 ]
-license = {text = "MIT"}
-readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "requests (>=2.32.5,<3.0.0)"
+    "virtualenv (>=21.2.0,<22.0.0)"
 ]
 
 
