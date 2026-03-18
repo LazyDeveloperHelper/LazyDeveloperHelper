@@ -28,9 +28,7 @@ test_files/test_gradle/
 !./test_files/test_gradle/build.gradle.kts
 !./test_files/test_gradle/settings.gradle.kts
 
-# Dart trash
-test_files/test_dart/pubspec.lock
-test_files/test_dart/.dart_tool/
-# trash
-pyrightconfig.json
 .pyre/
+__pycache__/
+pyrightconfig.json
+test_files/test_dart/.dart_tool/
