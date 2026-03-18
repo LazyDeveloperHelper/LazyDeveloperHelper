@@ -33,7 +33,4 @@ test_files/test_dart/pubspec.lock
 test_files/test_dart/.dart_tool/
 # trash
 pyrightconfig.json
-lua/LazyDeveloperHelper/python/python_installers/.pyre/
-test_files/test_poetry/.pyre/
-
-lua/LazyDeveloperHelper/python/.pyre/
+.pyre/
