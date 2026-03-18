@@ -1,0 +1,124 @@
+2026-03-18 07:51:45,909 [PID 3594] DEBUG Using selector: EpollSelector
+2026-03-18 07:51:45,910 [PID 3594] INFO Reading Pyre server configurations...
+2026-03-18 07:51:45,915 [PID 3594] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/persistent.py", line 299, in run
+    return asyncio.get_event_loop().run_until_complete(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/persistent.py", line 224, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 129, in read_server_options
+    return server_options_reader()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 114, in read
+    return PyreServerOptions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 93, in create
+    start_arguments = start.create_server_arguments(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/start.py", line 311, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/backend_arguments.py", line 418, in get_source_path_for_server
+    return get_source_path(
+           ^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/backend_arguments.py", line 397, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2026-03-18 07:52:27,513 [PID 4245] DEBUG Using selector: EpollSelector
+2026-03-18 07:52:27,516 [PID 4245] INFO Reading Pyre server configurations...
+2026-03-18 07:52:27,524 [PID 4245] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/persistent.py", line 299, in run
+    return asyncio.get_event_loop().run_until_complete(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/persistent.py", line 224, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 129, in read_server_options
+    return server_options_reader()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 114, in read
+    return PyreServerOptions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 93, in create
+    start_arguments = start.create_server_arguments(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/start.py", line 311, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/backend_arguments.py", line 418, in get_source_path_for_server
+    return get_source_path(
+           ^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/backend_arguments.py", line 397, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2026-03-18 07:53:53,880 [PID 5377] DEBUG Using selector: EpollSelector
+2026-03-18 07:53:53,880 [PID 5377] INFO Reading Pyre server configurations...
+2026-03-18 07:53:53,885 [PID 5377] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/persistent.py", line 299, in run
+    return asyncio.get_event_loop().run_until_complete(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/persistent.py", line 224, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 129, in read_server_options
+    return server_options_reader()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 114, in read
+    return PyreServerOptions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 93, in create
+    start_arguments = start.create_server_arguments(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/start.py", line 311, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/backend_arguments.py", line 418, in get_source_path_for_server
+    return get_source_path(
+           ^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/backend_arguments.py", line 397, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
+2026-03-18 07:55:21,616 [PID 5794] DEBUG Using selector: EpollSelector
+2026-03-18 07:55:21,617 [PID 5794] INFO Reading Pyre server configurations...
+2026-03-18 07:55:21,621 [PID 5794] ERROR Uncaught error in persistent.run
+Traceback (most recent call last):
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/persistent.py", line 299, in run
+    return asyncio.get_event_loop().run_until_complete(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/persistent.py", line 224, in run_persistent
+    initial_server_options = pyre_server_options.read_server_options(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 129, in read_server_options
+    return server_options_reader()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 114, in read
+    return PyreServerOptions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/pyre_server_options.py", line 93, in create
+    start_arguments = start.create_server_arguments(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/commands/start.py", line 311, in create_server_arguments
+    source_paths = backend_arguments.get_source_path_for_server(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/backend_arguments.py", line 418, in get_source_path_for_server
+    return get_source_path(
+           ^^^^^^^^^^^^^^^^
+  File "/home/silletr/.local/share/nvim/mason/packages/pyre/venv/lib/python3.12/site-packages/pyre_check/client/backend_arguments.py", line 397, in get_source_path
+    raise configuration_module.InvalidConfiguration(
+pyre_check.client.configuration.exceptions.InvalidConfiguration: Invalid configuration: Cannot find any source files to analyze. Either `source_directories` or `targets` must be specified.
