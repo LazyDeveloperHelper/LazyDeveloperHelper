@@ -56,8 +56,7 @@ def install_luarocks(libs: list[str], quiet: bool = False) -> None:
 
             stdout_lower = result.stdout.lower()
             if any(msg in stdout_lower for msg in ["installed", "already installed"]):
-                log_message(
-                    f"{lib} installed or already present", level="success")
+                log_message(f"{lib} installed or already present", level="success")
 
             if result.stdout and not quiet:
                 log_message(result.stdout, "info")
