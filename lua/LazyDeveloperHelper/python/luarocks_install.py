@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import List
 import sys
 import argparse
 from subprocess import run, CalledProcessError
 from shutil import which
+from typing import Any
 from logger import log_message
 
 # --- VARIABLES ---
 LUAROCKS_FLAG = "--local"
-luarocks_path = which("luarocks")
+luarocks_path: str | None = which(cmd="luarocks")
 
 
 # --- CHECKING LIBRARY NAME ---
@@ -21,36 +21,43 @@ def validate_library_name(lib: str) -> bool:
     return True
 
 
+# --- CHECK PATH ---
+def check_path() -> str:
+    luarocks_path: str | None = which(cmd="luarocks")
+    if not luarocks_path:
+        log_message("luarocks is not found in PATH", "error")
+        sys.exit(1)  # Or raise ValueError("LuaRocks not found")
+    return luarocks_path
+
+
 # --- INSTALLING BY LUAROCKS ---
-def install_luarocks(libs: List[str], quiet: bool = False) -> None:
+def install_luarocks(libs: list[str], quiet: bool = False) -> None:
+    check_path()
     for lib in libs:
         if not validate_library_name(lib):
             continue
 
-        luarocks_path = which("luarocks")
-        if not luarocks_path:
-            log_message("luarocks is not found in PATH", "error")
-            return
-
         log_message(f"Installing LuaRocks package {lib} ...", "info")
 
         # Build arguments
-        flags = [LUAROCKS_FLAG]
+        flags: list[str] = [LUAROCKS_FLAG]
         if quiet:
             flags.append("-q")
 
-        luarocks_args = [luarocks_path, "install", lib] + flags
+        luarocks_args: list[str] = [luarocks_path, "install", lib] + flags
 
         try:
-            result = run(
-                luarocks_args,
+            result: Any = run(
+                args=luarocks_args,
                 check=True,
                 text=True,
                 capture_output=True,
             )
+
             stdout_lower = result.stdout.lower()
-            if "installed" in stdout_lower or "already installed" in stdout_lower:
-                log_message(f"{lib} installed or already present", "success")
+            if any(msg in stdout_lower for msg in ["installed", "already installed"]):
+                log_message(
+                    f"{lib} installed or already present", level="success")
 
             if result.stdout and not quiet:
                 log_message(result.stdout, "info")
@@ -69,7 +76,7 @@ def install_luarocks(libs: List[str], quiet: bool = False) -> None:
 
 # --- MAIN ---
 def main():
-    parser = argparse.ArgumentParser()
+    parser: argparse.ArgumentParser = argparse.ArgumentParser()
     parser.add_argument("libs", nargs="*", help="LuaRocks packages to install")
     parser.add_argument("--quiet", action="store_true", help="Suppress output")
 
@@ -77,7 +84,7 @@ def main():
 
     # unknown contains anything argparse didn’t understand
     # remove any optional flags accidentally included in libs
-    libs = [lib for lib in args.libs if not lib.startswith("--")]
+    libs: list[Any] = [lib for lib in args.libs if not lib.startswith("--")]
 
     if not args.libs:
         log_message("No valid libraries provided", "error")
