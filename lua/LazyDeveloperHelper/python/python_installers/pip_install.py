@@ -72,7 +72,8 @@ def install_lib(
 
     with open(req_path, "r", encoding="utf-8") as file:
         all_libs = file.readlines()
-        libs_list.update(line.strip().split("==")[0].lower() for line in all_libs)
+        libs_list.update(line.strip().split(
+            "==")[0].lower() for line in all_libs)
 
     if lib_name.lower() not in libs_list:
         with open(req_path, "a", encoding="utf-8") as file:
@@ -133,7 +134,8 @@ def install_lib(
         log_message(f"stdout: {e.stdout}", "error")
         log_message(f"stderr: {e.stderr}error")
 
-        log_message(f"Return code: {getattr(e, 'returncode', 'unknown')}", "error")
+        log_message(f"Return code: {getattr(
+            e, 'returncode', 'unknown')}", "error")
         return
 
 
@@ -148,7 +150,7 @@ def main() -> None:
     libs_to_install = []
 
     for arg in sys.argv[1:]:
-        if arg == "-quiet" or arg == "--quiet":
+        if arg in ("-quiet", "--quiet"):
             quiet = True
         else:
             libs_to_install.append(arg)

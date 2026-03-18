@@ -55,7 +55,7 @@ def test_install_lib_already_installed(mock_exists, mock_run):
     libs_list: Set[str] = {"requests"}
     install_lib("requests", libs_list)
 
-    if not mock_run.called is True:
+    if mock_run.called is True:
         raise AssertionError
     if not len(libs_list) == 1:
         raise AssertionError

@@ -5,7 +5,7 @@ test_files/node_modules/
 node_modules/
 
 # Python
-./lua/LazyDeveloperHelper/python/__pycache__/
+lua/LazyDeveloperHelper/python/__pycache__/
 *.pyc
 /requirements.txt
 
@@ -28,12 +28,7 @@ test_files/test_gradle/
 !./test_files/test_gradle/build.gradle.kts
 !./test_files/test_gradle/settings.gradle.kts
 
-# Dart trash
-test_files/test_dart/console/.dart_tool/
-test_files/test_dart/console/pubspec.lock
-
-# Trash
-pyrightconfig.json
 .pyre/
 __pycache__/
+pyrightconfig.json
 test_files/test_dart/.dart_tool/

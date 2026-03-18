@@ -1,0 +1,2 @@
+Commit with hash: 8a901cd7232bfdbca75017ad23d4055ff9176af2
+Is wrong, cuz in my WSL looks like wrong timezone, soo yes xD

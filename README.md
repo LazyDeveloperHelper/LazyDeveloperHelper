@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/Silletr/LazyDeveloperHelper/stargazers">
-    <img src="https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper?style=for-the-badge&logo=neovim&logoColor=8281f3&color=8281f3&labelColor=242529" alt="GitHub Stars" />
+    <img src="https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper?style=for-the-badge&logo=neovim&logoColor=8281f3&color=8281f3&labelColor=242529" alt="GitHub Stars"/>
   </a>
 
   <a href="https://neovim.io/">
