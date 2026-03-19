@@ -100,7 +100,7 @@ _Have you ever found yourself adding multiple dependencies to your code before i
 - _Rust_ — via `Cargo`
 - _Kotlin / Groovy_ — via `Gradle` + Maven Central
 - _JavaScript_ — via `npm`
-- _C++_ — via `NuGet` / `Conan` / `vcpkg` (coming soon: `vim.ui.select` to pick between them)
+- _C++_ — via `NuGet` / `Conan` / `vcpkg` (`vim.ui.select` to pick between them)
 - _C_ — via `Conan`
 - _Ruby_ — via `gem`
 - _Lua_ — via `luarocks`
