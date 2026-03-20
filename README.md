@@ -145,6 +145,7 @@ Want to see what's planned for 2026?
 - [Dev.to](https://dev.to/silletr)
 - [X.com](https://x.com/silletr)
 
+[TrendShift.io](https://trendshift.io/repositories/23615)
 ## Installation Methods
 
 ### Install using Packer
