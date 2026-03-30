@@ -61,9 +61,8 @@
 
 <!-- toc -->
 
-- [Video example](#video-example)
-- [Status](#status)
 - [Introduction](#introduction)
+- [Video example](#video-example)
 - [Features](#features)
 - [Available Commands](#available-commands)
 - [Roadmap](#roadmap)
@@ -85,10 +84,6 @@
 <a href="https://youtu.be/pH86IEqpqAk" target="_blank">
   <img src="https://img.youtube.com/vi/pH86IEqpqAk/0.jpg" alt="Example video" />
 </a>
-
-## Status
-
-Want to see the status of the plugin on any given day? [That's the file for you](STATUS.md)
 
 ## Introduction
 
