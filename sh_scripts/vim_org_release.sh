@@ -6,13 +6,8 @@ vim_org_release() {
 
 	echo "[*] Copying folders"
 	mkdir -p /tmp/ldh_release/LazyDeveloperHelper
-	cp -r lua/LazyDeveloperHelper/commands/ /tmp/ldh_release/LazyDeveloperHelper/
-	cp -r lua/LazyDeveloperHelper/init.lua /tmp/ldh_release/LazyDeveloperHelper/
+	cp -r lua/LazyDeveloperHelper/ /tmp/ldh_release/LazyDeveloperHelper/
 
-	echo "[*] Copying files for test workability"
-	cp -r test_files/test.* /tmp/ldh_release/LazyDeveloperHelper/
-
-	cp -r lua/LazyDeveloperHelper/python /tmp/ldh_release/LazyDeveloperHelper/
 	echo "[*] Copying License, changelog.md"
 	cp LICENSE CHANGELOG.md /tmp/ldh_release/LazyDeveloperHelper/
 

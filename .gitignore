@@ -5,14 +5,15 @@ test_files/node_modules/
 node_modules/
 
 # Python
-./lua/LazyDeveloperHelper/python/__pycache__/
+lua/LazyDeveloperHelper/python/__pycache__/
 *.pyc
 /requirements.txt
 
 # Vim.org and GitHub releases file
 dist/
 
-# ---
+# --- Rust
+test_files/test_cargo/target/
 
 # Conan trash
 *.cmake
@@ -26,3 +27,8 @@ test_files/test_gradle/
 !.test_files/test_gradle/test.kts
 !./test_files/test_gradle/build.gradle.kts
 !./test_files/test_gradle/settings.gradle.kts
+
+.pyre/
+__pycache__/
+pyrightconfig.json
+test_files/test_dart/.dart_tool/

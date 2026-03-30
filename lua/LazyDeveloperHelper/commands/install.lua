@@ -23,14 +23,34 @@ function M.register()
         vim.notify("Detected filetype: " .. lang, vim.log.levels.INFO)
 
         local installers = {
-            python = "pip_install.py",
             lua = "luarocks_install.py",
             rust = "cargo_install.py",
             javascript = "npm_install.py",
             ruby = "ruby_gem_install.py",
             kotlin = "java_installer/gradle_install.py",
             go = "go_installer/go_installer.py",
+            dart = "dart_install.py",
         }
+
+        -- PYTHON AND C-like LANGUAGES INSTALLERS
+        if lang == "python" then
+            vim.ui.select({
+                { label = "📦 pip", value = "python_installers/pip_install.py" },
+                { label = "🐍 poetry (Needs a pyprojects.toml)", value = "python_installers/poetry_install.py" },
+            }, {
+                prompt = "Select Python package manager:",
+                format_item = function(item)
+                    return item.label
+                end,
+            }, function(choice)
+                if choice and choice.value then
+                    execute_installs(choice.value, args, flag, "python")
+                else
+                    vim.notify("❌ Selection cancelled", vim.log.levels.WARN)
+                end
+            end)
+            return
+        end
 
         if lang == "c" or lang == "cpp" then
             vim.ui.select({

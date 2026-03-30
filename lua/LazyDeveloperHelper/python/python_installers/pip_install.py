@@ -5,7 +5,6 @@ import sys
 from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Set
-from logger import log_message
 
 
 def check_pip_installed() -> bool:
@@ -15,6 +14,17 @@ def check_pip_installed() -> bool:
         log_message("pip3 is not installed or not found in PATH.", "error")
         return False
     return True
+
+
+# --- LOGGING MESSAGE ---
+def log_message(message: str, level: str = "info"):
+    prefixes = {
+        "info": "\u0001f4cd",  # 📍
+        "success": "\u0001f4e6",  # 📦
+        "error": "\u274c",  # ❌
+    }
+
+    print(f"{prefixes.get(level, '\u0001f4cd')} {message}")
 
 
 # --- VALIDATE LIB NAME
@@ -62,7 +72,8 @@ def install_lib(
 
     with open(req_path, "r", encoding="utf-8") as file:
         all_libs = file.readlines()
-        libs_list.update(line.strip().split("==")[0].lower() for line in all_libs)
+        libs_list.update(line.strip().split(
+            "==")[0].lower() for line in all_libs)
 
     if lib_name.lower() not in libs_list:
         with open(req_path, "a", encoding="utf-8") as file:
@@ -123,13 +134,13 @@ def install_lib(
         log_message(f"stdout: {e.stdout}", "error")
         log_message(f"stderr: {e.stderr}error")
 
-        log_message(f"Return code: {getattr(e, 'returncode', 'unknown')}", "error")
+        log_message(f"Return code: {getattr(
+            e, 'returncode', 'unknown')}", "error")
         return
 
 
 # --- MAIN FUNCTION ---
 def main() -> None:
-    print(">>> pip_install started <<<")
     if len(sys.argv) < 2:
         log_message("Provide at least one library name", "error")
         sys.exit(1)
@@ -139,7 +150,7 @@ def main() -> None:
     libs_to_install = []
 
     for arg in sys.argv[1:]:
-        if arg == "-quiet":
+        if arg in ("-quiet", "--quiet"):
             quiet = True
         else:
             libs_to_install.append(arg)
