@@ -40,6 +40,7 @@ def install_npm(lib: str) -> None:
             stderr=PIPE,
             text=True,
             check=True,
+            capture_output=True,
         )
         # If list contains package name — treat as installed
         if lib in (result.stdout or ""):
@@ -58,7 +59,16 @@ def install_npm(lib: str) -> None:
             text=True,
             check=True,
         )
-        print(f"✅ {lib} installed successfully")
+        lib_name: str = run(
+            args=[str(npm_path), "list", "-g", "--depth=0"],
+            stdout=PIPE,
+            stderr=PIPE,
+            text=True,
+            check=True,
+        )
+        if lib in lib_name.stdout:
+            print(f"✅ {lib} installed successfully")
+
     except CalledProcessError as e:
         print(f"❌ Failed to install {lib}")
         print("🔻 stdout:\n", e.stdout)

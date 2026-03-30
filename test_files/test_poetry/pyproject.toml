@@ -1,0 +1,16 @@
+[project]
+name = "test-poetry"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Silletr",email = "silletr@duck.com"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "virtualenv (>=21.2.0,<22.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
