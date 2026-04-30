@@ -57,7 +57,7 @@ def test_install_lib_already_installed(mock_exists, mock_run):
 
     if mock_run.called is True:
         raise AssertionError
-    if not len(libs_list) == 1:
+    if len(libs_list) != 1:
         raise AssertionError
 
 

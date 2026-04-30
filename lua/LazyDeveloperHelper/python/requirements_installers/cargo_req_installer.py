@@ -1,24 +1,30 @@
 #!/bin/env python3
 
-# --- IMPORTS ---
+#  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 from shutil import which
 import os
 from functools import lru_cache
 import subprocess
 
-# --- VARIABLES ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃                      VARIABLES                       ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 CARGO_TOML = "Cargo.toml"
-cargo_path = which("cargo")
+CARGO_PATH = which("cargo")
 
 
-# --- INITIALIZE LOGGING MESSAGE
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃              NITIALIZE LOGGING MESSAGE               ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 def log_message(message: str, level: str = "info") -> None:
     """Print a formatted message with an emoji prefix."""
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
 
-# --- CACHE Cargo.toml LOCATION ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃              CACHE Cargo.toml LOCATION               ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 @lru_cache(maxsize=1)
 def find_cargo_toml(start_dir: str = ".") -> str | None:
     """Search for Cargo.toml starting from the specified directory.
@@ -35,7 +41,7 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
         log_message(f"Found Cargo.toml at: {abs_path}", "info")
         return abs_path
 
-    # --- IF Cargo.toml IS FOUND
+    #  ━━━━━━━━━━━━━━━━━━ if Cargo.toml is found ━━━━━━━━━━━━━━━━━━
     current_dir = os.path.abspath(start_dir)
     while current_dir != os.path.dirname(current_dir):
         parent_dir = os.path.dirname(current_dir)
@@ -49,7 +55,9 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
     return None
 
 
-# --- SEARCH DEPENDENCIES BLOCK IN Cargo.toml --
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃       SEARCH DEPENDENCIES BLOCK IN Cargo.toml        ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 def dependencies_block_find():
     cargo_file = find_cargo_toml()
     if not cargo_file:
@@ -82,16 +90,18 @@ def dependencies_block_find():
     return deps
 
 
-# --- INSTALLING REQUIREMENTS ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃               INSTALLING REQUIREMENTS                ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 def install_dependency(dep_name: str) -> None:
     """Install a Rust dependency using cargo add."""
-    if not cargo_path:
+    if not CARGO_PATH:
         log_message("Cargo is not found in PATH.", "error")
         return
 
     try:
         result = subprocess.run(
-            [cargo_path, "add", dep_name], capture_output=True, text=True, check=True
+            [CARGO_PATH, "add", dep_name], capture_output=True, text=True, check=True
         )
         if result.returncode == 0:
             log_message(f"Successfully added {dep_name}", "success")

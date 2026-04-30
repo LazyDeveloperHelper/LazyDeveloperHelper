@@ -8,12 +8,17 @@ from shutil import which
 from typing import Any
 from logger import log_message
 
-# --- VARIABLES ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃         VARIABLES          ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
 LUAROCKS_FLAG = "--local"
 luarocks_path: str | None = which(cmd="luarocks")
 
 
-# --- CHECKING LIBRARY NAME ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃    CHECKING LIBRARY NAME    ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 def validate_library_name(lib: str) -> bool:
     if not lib or any(c in lib for c in '<>|&;"'):
         log_message(f"Invalid library name: {lib}", "error")
@@ -21,16 +26,21 @@ def validate_library_name(lib: str) -> bool:
     return True
 
 
-# --- CHECK PATH ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃         CHECK PATH         ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
 def check_path() -> str:
-    luarocks_path: str | None = which(cmd="luarocks")
     if not luarocks_path:
         log_message("luarocks is not found in PATH", "error")
-        sys.exit(1)  # Or raise ValueError("LuaRocks not found")
+        raise ValueError("LuaRocks not found")
     return luarocks_path
 
 
-# --- INSTALLING BY LUAROCKS ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃    INSTALLING BY LUAROCKS    ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 def install_luarocks(libs: list[str], quiet: bool = False) -> None:
     check_path()
     for lib in libs:
@@ -73,7 +83,6 @@ def install_luarocks(libs: list[str], quiet: bool = False) -> None:
             log_message(f"Permission error: {e}", "error")
 
 
-# --- MAIN ---
 def main():
     parser: argparse.ArgumentParser = argparse.ArgumentParser()
     parser.add_argument("libs", nargs="*", help="LuaRocks packages to install")

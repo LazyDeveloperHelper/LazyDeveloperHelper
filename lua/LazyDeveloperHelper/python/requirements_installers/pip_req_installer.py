@@ -6,12 +6,17 @@ import os
 import sys
 from subprocess import run, CalledProcessError
 
-# --- VARIABLES ---
+#  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃              VARIABLES               ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 REQUIREMENTS_FILE = "requirements.txt"
 ALTERNATIVE_FILE = "requirements-dev.txt"
 
 
-# --- LOGGING MESSAGE ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃           LOGGING MESSAGE            ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {
         "info": "\U0001f4cd",  # 📍
@@ -21,7 +26,11 @@ def log_message(message: str, level: str = "info") -> None:
     print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
 
 
-# --- INSTALL REQUIREMENTS FROM FILE ---
+#    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#    ┃    INSTALL REQUIREMENTS FROM FILE    ┃
+#    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
 def install_requirements(search_path="."):
     for dirpath, _, filenames in os.walk(search_path):
         if REQUIREMENTS_FILE in filenames:
@@ -76,4 +85,5 @@ if __name__ == "__main__":
     success = install_requirements(search_path)
     if not success:
         sys.exit(1)
+
     sys.exit(0)
