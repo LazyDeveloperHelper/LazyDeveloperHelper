@@ -36,7 +36,8 @@ def find_gradle_project() -> Path | None:
     for _ in range(10):
         for gradle_file in ["build.gradle.kts", "build.gradle"]:
             if (current_dir / gradle_file).exists():
-                log_message(f"Found Gradle project: {current_dir / gradle_file}")
+                log_message(f"Found Gradle project: {
+                            current_dir / gradle_file}")
                 return current_dir
         if current_dir.parent == current_dir:
             break
@@ -60,7 +61,8 @@ dependencies {
 }
 """
         build_file.write_text(template)
-        log_message(f"Created new {build_file.name} with minimal template", "success")
+        log_message(f"Created new {
+                    build_file.name} with minimal template", "success")
 
     content = build_file.read_text()
 
