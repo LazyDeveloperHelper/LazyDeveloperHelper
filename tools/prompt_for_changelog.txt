@@ -13,13 +13,12 @@ Your task is to create a concise TLDR section in Markdown format that summarizes
 **TLDR Section Requirements:**
 
 *   **Length:** STRICT 2-4 short paragraphs.
-*   **Headers** Do not add something like `## Changelog for ...` - just body of changelog.
+*   **Headers** Do NOT add something like `## Changelog for ...` - just body of changelog.
 *   **Formatting:** Use Markdown (bold, `code`, blockquotes) for emphasis and clarity. Bullet points are allowed if they improve readability.
 *   **Content:**
     *   Describe the *impact* of the changes in natural language, avoiding direct file path references unless absolutely necessary for understanding.
     *   Focus on the *user/developer benefit* of each change. Explain *what* changed and *why* it matters.
     *   Be concise and informative.
-    *   Ignore `<- By {user}` section, only if it not Silletr or Deepsource bots.
     *   If you see any NEW package manager in commit - Describe it with format: "\n**NEW PACKAGE MANAGERs**: \n(new managers)"
     *   Do not invent or assume any technologies, features, or benefits not explicitly present in the changelog (e.g., no React, API, UI if not mentioned).
 *   **Style:**
