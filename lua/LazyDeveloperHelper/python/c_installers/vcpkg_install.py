@@ -6,17 +6,17 @@ import shutil
 
 
 # --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info") -> None:
+def log_message(message: str, level: str = "info", filename: str = "app.log") -> None:
     prefixes = {
         "info": "\U0001f4cd",  # 📍
         "success": "\U0001f4e6",  # 📦
-        "error": "\u274c",  # ❌
-    }
+        "error": "\u274c",
+    }  # ❌
+    log_string = f"{prefixes.get(level, '\U0001f4cd')} {message}"
+    with open(file=filename, mode="a") as file:
+        file.write(log_string)
 
-    print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
 
-
-# --- FIND vcpkg IN PATH ---
 def find_vcpkg():
     """Find vcpkg executable cross-platform."""
     vcpkg_path = shutil.which("vcpkg")
@@ -50,7 +50,7 @@ def install_package(pkg: str):
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         log_message("Usage: :LazyDevInstall {package} (NeoVim Version)")
-        log_message("Or: python3 vcpkg_install.py {package} (CLI Version)")
+        log_message("Or (Directly): python3 vcpkg_install.py {package} (CLI Version)")
         sys.exit(1)
     package = sys.argv[1]
     install_package(package)

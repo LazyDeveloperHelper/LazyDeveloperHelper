@@ -5,19 +5,25 @@ from subprocess import run, CalledProcessError
 
 
 # --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info") -> None:
+def log_message(message: str, level: str = "info", filename: str = "app.log") -> None:
     prefixes = {
         "info": "\U0001f4cd",  # 📍
         "success": "\U0001f4e6",  # 📦
-        "error": "\u274c",  # ❌
+        "error": "\u274c",
     }
+    log_string = f"{prefixes.get(level, '\U0001f4cd')} {message}"
+    with open(file=filename, mode="a") as file:
+        file.write(log_string)
 
-    print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
+
+#  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
-# --- CHECK NuGet is exist ---
+dotnet_path = sh.which("dotnet")
+
+
+#  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 def nuget_exist() -> bool:
-    dotnet_path = sh.which("dotnet")
     if dotnet_path:
         log_message("Dotnet exists!", "info")
         return True
