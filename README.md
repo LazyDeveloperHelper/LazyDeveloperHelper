@@ -62,15 +62,14 @@
 <!-- toc -->
 
 - [Video example](#video-example)
-- [Status](#status)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Available Commands](#available-commands)
 - [Roadmap](#roadmap)
 - [Available in](#available-in)
 - [Installation Methods](#installation-methods)
-  - [Install using Packer](#install-using-packer)
-  - [Install using Lazy](#install-using-lazy)
+	* [Install using Packer](#install-using-packer)
+	* [Install using Lazy](#install-using-lazy)
 - [Usage](#usage)
 - [How to Support Me](#how-to-support-me)
 - [Plugin History](#plugin-history)
@@ -85,10 +84,6 @@
 <a href="https://youtu.be/pH86IEqpqAk" target="_blank">
   <img src="https://img.youtube.com/vi/pH86IEqpqAk/0.jpg" alt="Example video" />
 </a>
-
-## Status
-
-Want to see the status of the plugin on any given day? [That's the file for you](STATUS.md)
 
 ## Introduction
 
