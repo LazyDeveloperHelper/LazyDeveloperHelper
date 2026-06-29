@@ -17,15 +17,19 @@ def log_message(message: str, level: str = "info", filename: str = "app.log") ->
         "error": "\u274c",  # ❌
     }
     log_string = f"{prefixes.get(level, '\U0001f4cd')} {message}"
-    with open(file=filename, mode="a") as file:
-        file.write(log_string)
+    if not os.path.exists(filename):
+        with open(file=filename, mode="a") as file:
+            file.write(log_string)
 
 
 # --- CONAN location ---
 CONAN = str(sh.which("conan"))
-
+if not CONAN:
+    log_message("We-woo-wewoo - ur CONAN is NOT installed. Install it!", "error")
 
 # --- CHECK CONAN EXIST ---
+
+
 def conan_exist():
     if CONAN:
         log_message("Conan found!", "success")
