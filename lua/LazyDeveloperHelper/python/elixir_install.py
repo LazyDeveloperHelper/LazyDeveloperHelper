@@ -17,7 +17,7 @@ def default_exs_file(deps: list):
     Args:
         deps: list - List of all your dependencies u want to install,
     """
-    file_template = """defmodule LazyDeveloperHelperTemplate.MixProject do
+    file_template = f"""defmodule LazyDeveloperHelperTemplate.MixProject do
     use Mix.Project
 
     def project do
@@ -38,10 +38,10 @@ def default_exs_file(deps: list):
 
   defp deps do
     [
-        {:dep_from_hexpm, "~> 0.3.0"},
-        {:dep_from_git, git: "https://github.com/user/repo.git", tag: "0.1.0"}
+        {deps}
     ]   end
 
     end
 
     """
+    return file_template
