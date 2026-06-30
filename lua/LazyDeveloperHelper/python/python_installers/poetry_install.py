@@ -5,6 +5,7 @@ import os
 import sys
 from subprocess import run, CalledProcessError
 from shutil import which
+from logger import log_message
 
 
 PYPROJECT_TOML = "pyproject.toml"
@@ -18,17 +19,6 @@ def check_poetry_installed() -> str:
         log_message("Poetry is not installed or not found in PATH.", "error")
         return str(poetry_path)
     return poetry_path
-
-
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info"):
-    prefixes = {
-        "info": chr(0x1F4CD),  # 📍
-        "success": chr(0x1F4E6),  # 📦
-        "error": chr(0x274C),  # ❌
-    }
-
-    print(f"{prefixes.get(level, '\u0001f4cd')} {message}")
 
 
 # --- FIND pyproject.toml ---

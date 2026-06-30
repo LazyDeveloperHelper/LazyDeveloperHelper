@@ -5,6 +5,7 @@ import sys
 from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Set
+from logger import log_message
 
 
 def check_pip_installed() -> bool:
@@ -14,17 +15,6 @@ def check_pip_installed() -> bool:
         log_message("pip3 is not installed or not found in PATH.", "error")
         return False
     return True
-
-
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info"):
-    prefixes = {
-        "info": "\u0001f4cd",  # 📍
-        "success": "\u0001f4e6",  # 📦
-        "error": "\u274c",  # ❌
-    }
-
-    print(f"{prefixes.get(level, '\u0001f4cd')} {message}")
 
 
 # --- VALIDATE LIB NAME

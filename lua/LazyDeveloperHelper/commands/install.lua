@@ -100,6 +100,12 @@ function M.register()
 
         local script_path = python_dir .. script_name
         local current_dir = vim.fn.expand("%:p:h")
+        local env_map = vim.fn.environ()
+        local python_path = python_dir
+        if env_map.PYTHONPATH and env_map.PYTHONPATH ~= "" then
+            python_path = python_path .. ":" .. env_map.PYTHONPATH
+        end
+        local env = vim.tbl_extend("force", env_map, { PYTHONPATH = python_path })
 
         local function execute_install(lib)
             vim.notify("📦 Installing: " .. lib, vim.log.levels.INFO)
@@ -111,6 +117,7 @@ function M.register()
 
             vim.system(cmd_args, {
                 cwd = current_dir,
+                env = env,
                 stdout = function(err, data)
                     if data then
                         vim.schedule(function()
