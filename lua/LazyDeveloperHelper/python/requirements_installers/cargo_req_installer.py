@@ -14,7 +14,7 @@ CARGO_PATH = which("cargo")
 
 
 #    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-#    ┃              NITIALIZE LOGGING MESSAGE               ┃
+#    ┃              INITIALIZE LOGGING MESSAGE              ┃
 #    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 def log_message(message: str, level: str = "info") -> None:
     """Print a formatted message with an emoji prefix."""
@@ -88,6 +88,9 @@ def dependencies_block_find():
 
     log_message(f"Found dependencies: {deps}", "info")
     return deps
+
+
+#  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
 #    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
