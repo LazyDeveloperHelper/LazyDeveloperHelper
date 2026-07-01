@@ -11,7 +11,7 @@ Contributions are welcome! Here's how you can help:
 1. Pull Requests
 
 - Fork the repository
-- Make your changes
+- Make your changes [Note: VIBECODE = STRICTLY FORBIDDEN AND WON'T BE APPROVED!!!!]
 - Submit a PR with a brief description
 
 All contributions will be reviewed promptly.
