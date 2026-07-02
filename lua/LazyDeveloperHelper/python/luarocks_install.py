@@ -6,7 +6,7 @@ import argparse
 from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Any
-from logger import log_message
+from logger import logger
 
 #    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 #    ┃         VARIABLES          ┃
@@ -21,7 +21,7 @@ luarocks_path: str | None = which(cmd="luarocks")
 #    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 def validate_library_name(lib: str) -> bool:
     if not lib or any(c in lib for c in '<>|&;"'):
-        log_message(f"Invalid library name: {lib}", "error")
+        logger(f"Invalid library name: {lib}", "error")
         return False
     return True
 
@@ -33,7 +33,7 @@ def validate_library_name(lib: str) -> bool:
 
 def check_path() -> str:
     if not luarocks_path:
-        log_message("luarocks is not found in PATH", "error")
+        logger("luarocks is not found in PATH", "error")
         raise ValueError("LuaRocks not found")
     return luarocks_path
 
@@ -47,7 +47,7 @@ def install_luarocks(libs: list[str], quiet: bool = False) -> None:
         if not validate_library_name(lib):
             continue
 
-        log_message(f"Installing LuaRocks package {lib} ...", "info")
+        logger(f"Installing LuaRocks package {lib} ...", "info")
 
         # Build arguments
         flags: list[str] = [LUAROCKS_FLAG]
@@ -66,21 +66,21 @@ def install_luarocks(libs: list[str], quiet: bool = False) -> None:
 
             stdout_lower = result.stdout.lower()
             if any(msg in stdout_lower for msg in ["installed", "already installed"]):
-                log_message(f"{lib} installed or already present", level="success")
+                logger(f"{lib} installed or already present", level="success")
 
             if result.stdout and not quiet:
-                log_message(result.stdout, "info")
+                logger(result.stdout, "info")
         except CalledProcessError as e:
-            log_message(f"Failed to install {lib}", "error")
-            log_message(f"stdout:\n{e.stdout}")
+            logger(f"Failed to install {lib}", "error")
+            logger(f"stdout:\n{e.stdout}")
 
-            log_message(f"stderr:\n{e.stderr}")
-            log_message(f"Return code: {e.returncode}", "error")
+            logger(f"stderr:\n{e.stderr}")
+            logger(f"Return code: {e.returncode}", "error")
         except FileNotFoundError as e:
-            log_message(f"File error: {e}", "error")
+            logger(f"File error: {e}", "error")
 
         except PermissionError as e:
-            log_message(f"Permission error: {e}", "error")
+            logger(f"Permission error: {e}", "error")
 
 
 def main():
@@ -95,7 +95,7 @@ def main():
     libs: list[Any] = [lib for lib in args.libs if not lib.startswith("--")]
 
     if not args.libs:
-        log_message("No valid libraries provided", "error")
+        logger("No valid libraries provided", "error")
         sys.exit(1)
     install_luarocks(libs, quiet=args.quiet)
 

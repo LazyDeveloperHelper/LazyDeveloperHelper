@@ -5,7 +5,7 @@ import os
 import sys
 from subprocess import run, CalledProcessError
 from shutil import which
-from logger import log_message
+from logger import logger
 
 
 PYPROJECT_TOML = "pyproject.toml"
@@ -16,7 +16,7 @@ def check_poetry_installed() -> str:
     """Check if poetry is installed and available in PATH."""
     poetry_path: str | None = which("poetry")
     if poetry_path is None:
-        log_message("Poetry is not installed or not found in PATH.", "error")
+        logger("Poetry is not installed or not found in PATH.", "error")
         return str(poetry_path)
     return poetry_path
 
@@ -30,7 +30,7 @@ def find_pyproject(start_dir: str = ".") -> str | None:
     pyproject_path = os.path.join(start_dir, PYPROJECT_TOML)
     if os.path.exists(path=pyproject_path):
         abs_path = os.path.abspath(pyproject_path)
-        log_message(f"Found pyproject.toml at: {abs_path}", "info")
+        logger(f"Found pyproject.toml at: {abs_path}", "info")
         return abs_path
 
     current_dir = os.path.abspath(start_dir)
@@ -38,7 +38,7 @@ def find_pyproject(start_dir: str = ".") -> str | None:
     while True:
         pyproject_path = os.path.join(current_dir, PYPROJECT_TOML)
         if os.path.exists(pyproject_path):
-            log_message(f"Found pyproject.toml at: {pyproject_path}", "info")
+            logger(f"Found pyproject.toml at: {pyproject_path}", "info")
             return pyproject_path
 
         parent = os.path.dirname(current_dir)
@@ -47,7 +47,7 @@ def find_pyproject(start_dir: str = ".") -> str | None:
         current_dir = parent
 
     # not found anywhere - create in original directory
-    log_message("pyproject.toml not found, creating...", "error")
+    logger("pyproject.toml not found, creating...", "error")
     target_dir: str = os.path.abspath(
         start_dir
     )  # ← using start_dir, but not current_dir
@@ -81,13 +81,13 @@ def install_package(package: str):
     cmd: list[str] = [poetry_path, "add", package]
     try:
         _ = run(args=cmd, check=True, capture_output=True, text=True)
-        log_message(f"{package} installed/added.", "success")
+        logger(f"{package} installed/added.", "success")
     except CalledProcessError as e:
-        log_message(f"Failed: {e.stderr}", "error")
+        logger(f"Failed: {e.stderr}", "error")
 
 
 if __name__ == "__main__":
     packages = sys.argv[1]
     if not packages:
-        log_message("Please provide any package!", "error")
+        logger("Please provide any package!", "error")
     install_package(packages)

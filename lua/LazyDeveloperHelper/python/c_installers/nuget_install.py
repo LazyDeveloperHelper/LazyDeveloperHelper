@@ -2,7 +2,7 @@
 import shutil as sh
 import sys
 from subprocess import run, CalledProcessError
-from logger import log_message
+from logger import logger
 #  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
@@ -12,10 +12,10 @@ dotnet_path = sh.which("dotnet")
 #  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 def nuget_exist() -> bool:
     if dotnet_path:
-        log_message("Dotnet exists!", "info")
+        logger("Dotnet exists!", "info")
         return True
     else:
-        log_message("Dotnet isnt exists, try install it!", "critical")
+        logger("Dotnet isnt exists, try install it!", "critical")
         return False
 
 
@@ -24,9 +24,9 @@ def install_lib(lib_name: str):
     message_for_run = ["dotnet", "add", "package", lib_name]
     try:
         result = run(message_for_run, check=True, capture_output=True, text=True)
-        log_message(f"NuGet install output:\n{result.stdout}", "info")
+        logger(f"NuGet install output:\n{result.stdout}", "info")
     except CalledProcessError as err:
-        log_message(f"Dotnet install failed:\n{err.stderr}", "error")
+        logger(f"Dotnet install failed:\n{err.stderr}", "error")
 
 
 # --- POINT OF ENTER ---

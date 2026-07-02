@@ -5,7 +5,6 @@ from shutil import which
 import os
 from functools import lru_cache
 import subprocess
-from logger import log_message
 
 #    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 #    ┃                      VARIABLES                       ┃

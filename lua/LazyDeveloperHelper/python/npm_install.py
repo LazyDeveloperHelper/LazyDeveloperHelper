@@ -2,7 +2,7 @@
 from subprocess import run, CalledProcessError, PIPE
 from shutil import which
 import sys
-from logger import log_message
+from logger import logger
 
 # --- npm PATH ---
 npm_path = which("npm")
@@ -11,7 +11,7 @@ npm_path = which("npm")
 # --- CHECKING npm INSTALLED
 def check_npm_installed() -> bool:
     if not npm_path:
-        log_message("npm is not installed or not found in PATH.", "error")
+        logger("npm is not installed or not found in PATH.", "error")
         return False
     return True
 
@@ -19,7 +19,7 @@ def check_npm_installed() -> bool:
 # --- VALIDATE LIB NAME ---
 def validate_library_name(lib: str) -> bool:
     if not lib or any(c in lib for c in '<>|&;"'):
-        log_message(f"Invalid package name: {lib}", "error")
+        logger(f"Invalid package name: {lib}", "error")
         return False
     return True
 
@@ -32,7 +32,7 @@ def install_npm(lib: str) -> None:
     if not validate_library_name(lib):
         return
 
-    log_message(f"Installing npm package: {lib} ...", "info")
+    logger(f"Installing npm package: {lib} ...", "info")
     try:
         result = run(
             [str(npm_path), "list", lib],
@@ -44,7 +44,7 @@ def install_npm(lib: str) -> None:
         )
         # If list contains package name — treat as installed
         if lib in (result.stdout or ""):
-            log_message(f"{lib} already installed", "success")
+            logger(f"{lib} already installed", "success")
             return
     except Exception:
         # If npm list itself fails unexpectedly, continue to attempt install

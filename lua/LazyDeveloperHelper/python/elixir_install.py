@@ -1,14 +1,14 @@
 #  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 from shutil import which
-from logger import log_message
+from logger import logger
 
 ELIXIR_PATH = which("elixir")
 MIX_EXS_FILE = "mix.exs"
 
 if not ELIXIR_PATH:
-    log_message("Elixir CLI are NOT found! Install it!", "error")
+    logger("Elixir CLI are NOT found! Install it!", "error")
 else:
-    log_message("Elixir is here, nice", "success")
+    logger("Elixir is here, nice", "success")
 #  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
