@@ -3,38 +3,26 @@
 import shutil as sh
 import sys
 from subprocess import run, CalledProcessError
+from logger import logger
 import os
 import re
 from packaging import version
 from typing import List
 
 
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info", filename: str = "app.log") -> None:
-    prefixes = {
-        "info": "\U0001f4cd",  # 📍
-        "success": "\U0001f4e6",  # 📦
-        "error": "\u274c",  # ❌
-    }
-    log_string = f"{prefixes.get(level, '\U0001f4cd')} {message}"
-    if not os.path.exists(filename):
-        with open(file=filename, mode="a") as file:
-            file.write(log_string)
-
-
 # --- CONAN location ---
 CONAN = str(sh.which("conan"))
 if not CONAN:
-    log_message("We-woo-wewoo - ur CONAN is NOT installed. Install it!", "error")
+    logger("We-woo-wewoo - ur CONAN is NOT installed. Install it!", "error")
 
 # --- CHECK CONAN EXIST ---
 
 
 def conan_exist():
     if CONAN:
-        log_message("Conan found!", "success")
+        logger("Conan found!", "success")
         return True
-    log_message("Conan not found, try: pip install conan", "error")
+    logger("Conan not found, try: pip install conan", "error")
     return False
 
 
@@ -44,7 +32,7 @@ def conan_exist():
 def resolve_package_name(package: str) -> str:
     if "/" in package:
         return package
-    log_message(f"Resolving latest version for {package}...", "info")
+    logger(f"Resolving latest version for {package}...", "info")
     result = run(
         [CONAN, "search", package, "--remote=conancenter"],
         capture_output=True,
@@ -60,9 +48,9 @@ def resolve_package_name(package: str) -> str:
     if versions:
         latest_version = max(versions, key=version.parse)
         full_name = f"{package}/{latest_version}"
-        log_message(f"Resolved version → {full_name}", "success")
+        logger(f"Resolved version → {full_name}", "success")
         return full_name
-    log_message(f"No versions found for {package}", "error")
+    logger(f"No versions found for {package}", "error")
     return package
 
 
@@ -104,7 +92,7 @@ def add_to_requires(conanfile_path: str, full_name: str):
             content.append(line)
 
     if already_exists:
-        log_message(f"{pkg_short} already in conanfile.txt", "info")
+        logger(f"{pkg_short} already in conanfile.txt", "info")
         return False
 
     with open(conanfile_path, "w", encoding="utf-8") as f:
@@ -123,7 +111,7 @@ def add_to_requires(conanfile_path: str, full_name: str):
             f.write("\n[requires]\n")
             f.write(f"{full_name}\n")
 
-    log_message(f"Added {full_name} to conanfile.txt", "success")
+    logger(f"Added {full_name} to conanfile.txt", "success")
     return True
 
 
@@ -144,7 +132,7 @@ CMakeToolchain
 """
     with open(conanfile_path, "w", encoding="utf-8") as f:
         f.write(template)
-    log_message(f"Created new {conanfile_path} with base template", "success")
+    logger(f"Created new {conanfile_path} with base template", "success")
 
 
 # --- INSTALLING FUNCTION ---
@@ -157,12 +145,12 @@ def install_package(lib: str):
     ensure_conanfile(conanfile_path)
 
     if add_to_requires(conanfile_path, full_name):
-        log_message(f"Updated conanfile.txt with {full_name}", "info")
+        logger(f"Updated conanfile.txt with {full_name}", "info")
 
     build_dir = f"build_{lib.lower()}"
     os.makedirs(build_dir, exist_ok=True)
 
-    log_message(f"Running conan install for {full_name} → {build_dir}/", "info")
+    logger(f"Running conan install for {full_name} → {build_dir}/", "info")
     cmd = [
         CONAN,
         "install",
@@ -175,10 +163,10 @@ def install_package(lib: str):
     ]
     try:
         run(cmd, check=True, text=True, capture_output=True)
-        log_message(f"{lib} successfully installed → {build_dir}/", "success")
-        log_message(f"To remove: rm -rf {build_dir}/", "info")
+        logger(f"{lib} successfully installed → {build_dir}/", "success")
+        logger(f"To remove: rm -rf {build_dir}/", "info")
     except CalledProcessError as e:
-        log_message(f"Conan failed for {lib}", "error")
+        logger(f"Conan failed for {lib}", "error")
         print("Error output:")
         print(e.stderr if e.stderr else e.stdout)
 
@@ -188,14 +176,12 @@ def main() -> None:
     if not conan_exist():
         sys.exit(1)
     if len(sys.argv) < 2:
-        log_message(
-            "Usage: python conan_installer.py <package1> <package2> ...", "info"
-        )
-        log_message("Examples:", "info")
+        logger("Usage: python conan_installer.py <package1> <package2> ...", "info")
+        logger("Examples:", "info")
 
-        log_message("Examples:", "info")
-        log_message(" python conan_installer.py spdlog fmt", "info")
-        log_message(" python conan_installer.py zlib/1.2.13 boost/1.85.0", "info")
+        logger("Examples:", "info")
+        logger(" python conan_installer.py spdlog fmt", "info")
+        logger(" python conan_installer.py zlib/1.2.13 boost/1.85.0", "info")
         sys.exit(1)
     for lib in sys.argv[1:]:
         install_package(lib)

@@ -4,24 +4,16 @@ from subprocess import run, CalledProcessError, PIPE
 from shutil import which
 import sys
 from pathlib import Path
+from logger import logger
 
 go_path = which("go")
 
 
-def log_message(message: str, level: str = "info") -> None:
-    prefixes = {
-        "info": "\U0001f4cd",
-        "success": "\U0001f4e6",
-        "error": "\u274c",
-    }
-    print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
-
-
 def check_go_installed() -> bool:
     if not go_path:
-        log_message("Go is not installed or not in PATH.", "error")
+        logger("Go is not installed or not in PATH.", "error")
         return False
-    log_message(f"Using Go: {go_path}")
+    logger(f"Using Go: {go_path}")
     return True
 
 
@@ -53,14 +45,14 @@ def install_lib(lib: str) -> None:
     if not check_go_installed():
         return
     package = normalize_package(lib)
-    log_message(f"Installing Go package: {package} ...", "info")
+    logger(f"Installing Go package: {package} ...", "info")
     project_dir = Path.cwd()
     if not (project_dir / "go.mod").exists():
         try:
             run([str(go_path), "mod", "init", "myproject"], check=True, cwd=project_dir)
-            log_message("Created new go.mod", "success")
+            logger("Created new go.mod", "success")
         except Exception as e:
-            log_message(f"Failed to init go.mod: {e}", "error")
+            logger(f"Failed to init go.mod: {e}", "error")
             return
     try:
         result = run(
@@ -71,11 +63,11 @@ def install_lib(lib: str) -> None:
             check=True,
             cwd=project_dir,
         )
-        log_message(f"✅ {lib} added to go.mod successfully!", "success")
+        logger(f"✅ {lib} added to go.mod successfully!", "success")
         if result.stdout:
             print(result.stdout)
     except CalledProcessError as e:
-        log_message(f"❌ Failed to add {lib}", "error")
+        logger(f"❌ Failed to add {lib}", "error")
         if e.stdout:
             print("🔻 stdout:\n", e.stdout)
         if e.stderr:
@@ -85,7 +77,7 @@ def install_lib(lib: str) -> None:
 
 def main() -> None:
     if len(sys.argv) < 2:
-        log_message(
+        logger(
             "Usage: :LazyDevInstall echo or Echo@v4.12.0 or github.com/labstack/echo/v4@latest",
             "error",
         )

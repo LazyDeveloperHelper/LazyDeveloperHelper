@@ -2,20 +2,7 @@
 import shutil as sh
 import sys
 from subprocess import run, CalledProcessError
-
-
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info", filename: str = "app.log") -> None:
-    prefixes = {
-        "info": "\U0001f4cd",  # 📍
-        "success": "\U0001f4e6",  # 📦
-        "error": "\u274c",
-    }
-    log_string = f"{prefixes.get(level, '\U0001f4cd')} {message}"
-    with open(file=filename, mode="a") as file:
-        file.write(log_string)
-
-
+from logger import logger
 #  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
@@ -25,10 +12,10 @@ dotnet_path = sh.which("dotnet")
 #  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 def nuget_exist() -> bool:
     if dotnet_path:
-        log_message("Dotnet exists!", "info")
+        logger("Dotnet exists!", "info")
         return True
     else:
-        log_message("Dotnet isnt exists, try install it!", "critical")
+        logger("Dotnet isnt exists, try install it!", "critical")
         return False
 
 
@@ -37,9 +24,9 @@ def install_lib(lib_name: str):
     message_for_run = ["dotnet", "add", "package", lib_name]
     try:
         result = run(message_for_run, check=True, capture_output=True, text=True)
-        log_message(f"NuGet install output:\n{result.stdout}", "info")
+        logger(f"NuGet install output:\n{result.stdout}", "info")
     except CalledProcessError as err:
-        log_message(f"Dotnet install failed:\n{err.stderr}", "error")
+        logger(f"Dotnet install failed:\n{err.stderr}", "error")
 
 
 # --- POINT OF ENTER ---

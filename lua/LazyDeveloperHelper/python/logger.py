@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 from __future__ import annotations
 
@@ -35,6 +34,6 @@ def _get_logger(filename: str) -> logging.Logger:
     return logger
 
 
-def log_message(message: str, level: str = "info", filename: str = "app.log") -> None:
+def logger(message: str, level: str = "info", filename: str = "app.log") -> None:
     prefix = _PREFIXES.get(level, _PREFIXES["info"])
     _get_logger(filename).info("%s %s", prefix, message)

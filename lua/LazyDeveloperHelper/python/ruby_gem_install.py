@@ -3,7 +3,7 @@
 from subprocess import run, CalledProcessError, PIPE
 from shutil import which
 import sys
-from logger import log_message
+from logger import logger
 
 
 # -- VARIABLES --
@@ -14,9 +14,9 @@ GEM_PATH = which("gem")
 def check_gem():
     """Check if the 'gem' command is available on the system."""
     if GEM_PATH:
-        log_message("✅ Gem is found!", "success")
+        logger("✅ Gem is found!", "success")
     else:
-        log_message(
+        logger(
             "❌ Gem not found, try to install by: `sudo apt install ruby-rubygems`",
             "error",
         )
@@ -27,7 +27,7 @@ def check_gem():
 def install_gem(lib_name: str):
     """Install a Ruby gem using the 'gem install' command."""
     if not GEM_PATH:
-        log_message("Gem is not installed.", "error")
+        logger("Gem is not installed.", "error")
         sys.exit(1)
     try:
         result = run(
@@ -38,9 +38,9 @@ def install_gem(lib_name: str):
             stderr=PIPE,
         )
         if "Successfully installed" in result.stdout:
-            log_message(f"Successfully installed {lib_name}", "success")
+            logger(f"Successfully installed {lib_name}", "success")
     except CalledProcessError as e:
-        log_message(f"Failed to install {lib_name}: {e.stderr}", "error")
+        logger(f"Failed to install {lib_name}: {e.stderr}", "error")
         sys.exit(1)
 
 

@@ -5,7 +5,7 @@ import sys
 from subprocess import run, CalledProcessError
 from shutil import which
 from functools import lru_cache
-from logger import log_message
+from logger import logger
 
 
 # --- VARIABLES ---
@@ -27,7 +27,7 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
     cargo_path = os.path.join(start_dir, CARGO_TOML)
     if os.path.exists(cargo_path):
         abs_path = os.path.abspath(cargo_path)
-        log_message(f"Found Cargo.toml at: {abs_path}", "info")
+        logger(f"Found Cargo.toml at: {abs_path}", "info")
         return abs_path
     # --- IF Cargo.toml IS FOUND
     current_dir = os.path.abspath(start_dir)
@@ -36,10 +36,10 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
         cargo_path = os.path.join(parent_dir, CARGO_TOML)
         if os.path.exists(cargo_path):
             abs_path = os.path.abspath(cargo_path)
-            log_message(f"Found Cargo.toml at: {abs_path}", "info")
+            logger(f"Found Cargo.toml at: {abs_path}", "info")
             return abs_path
         current_dir = parent_dir
-    log_message("Cargo.toml not found in current or parent directories.", "error")
+    logger("Cargo.toml not found in current or parent directories.", "error")
     return None
 
 
@@ -47,9 +47,9 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
 def check_cargo_installed() -> bool:
     """Check if cargo is installed and available in PATH."""
     if not cargo_path:
-        log_message("cargo is not installed or not found in PATH.", "error")
+        logger("cargo is not installed or not found in PATH.", "error")
         return False
-    log_message(f"Cargo found at: {cargo_path}", "info")
+    logger(f"Cargo found at: {cargo_path}", "info")
     return True
 
 
@@ -57,7 +57,7 @@ def check_cargo_installed() -> bool:
 def validate_library_name(lib: str) -> bool:
     """Check if the library name is valid."""
     if not lib or any(c in lib for c in '<>|&;"'):
-        log_message(f"Invalid library name: {lib}", "error")
+        logger(f"Invalid library name: {lib}", "error")
         return False
     return True
 
@@ -72,7 +72,7 @@ def cargo_install(libs: list[str], quiet: bool = False) -> None:
     original_dir = os.getcwd()
     try:
         os.chdir(abs_cargo_dir)
-        log_message(f"Running cargo add {' '.join(libs)} from {os.getcwd()} ...")
+        logger(f"Running cargo add {' '.join(libs)} from {os.getcwd()} ...")
         cargo_args = [cargo_path, "add"] + libs
         if quiet:
             cargo_args.append("--quiet")
@@ -83,11 +83,11 @@ def cargo_install(libs: list[str], quiet: bool = False) -> None:
             capture_output=True,
             text=True,
         )
-        log_message("Cargo output:\n" + result.stdout, "success")
+        logger("Cargo output:\n" + result.stdout, "success")
     except CalledProcessError as e:
-        log_message(f"Failed to install {', '.join(libs)}", "error")
-        log_message("stdout:\n" + e.stdout)
-        log_message("stderr:\n" + e.stderr)
+        logger(f"Failed to install {', '.join(libs)}", "error")
+        logger("stdout:\n" + e.stdout)
+        logger("stderr:\n" + e.stderr)
     finally:
         os.chdir(original_dir)
 
@@ -97,7 +97,7 @@ def main() -> None:
     Args: libs (list[str]): List of library names to install."""
 
     if len(sys.argv) < 2:
-        log_message("Provide at least one library name", "error")
+        logger("Provide at least one library name", "error")
         sys.exit(1)
 
     quiet = False

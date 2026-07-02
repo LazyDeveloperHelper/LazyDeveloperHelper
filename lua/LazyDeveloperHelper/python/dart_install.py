@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # --- IMPORTS ---
-from logger import log_message as logger
+from logger import logger
 from subprocess import run, CalledProcessError
 from shutil import which
 import pathlib
@@ -35,6 +35,7 @@ environment:
     else:
         logger("pubspec.yaml already exists")
 
+
 def is_package_installed(package: str) -> bool:
     pubspec_path = os.path.join(os.getcwd(), "pubspec.yaml")
     if not os.path.exists(pubspec_path):
@@ -42,7 +43,7 @@ def is_package_installed(package: str) -> bool:
     with open(pubspec_path, "r") as f:
         content = f.read()
     # Check if package name appears in dependencies section
-    return bool(re.search(rf'^\s+{re.escape(package)}:', content, re.MULTILINE))
+    return bool(re.search(rf"^\s+{re.escape(package)}:", content, re.MULTILINE))
 
 
 # --- INSTALL LIB ---

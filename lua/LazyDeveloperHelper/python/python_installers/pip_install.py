@@ -5,33 +5,23 @@ import sys
 from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Set
+from logger import logger
 
 
 def check_pip_installed() -> bool:
     """Check if pip3 is installed and available in PATH."""
     pip_path = which("pip3")
     if pip_path is None:
-        log_message("pip3 is not installed or not found in PATH.", "error")
+        logger("pip3 is not installed or not found in PATH.", "error")
         return False
     return True
-
-
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info"):
-    prefixes = {
-        "info": "\u0001f4cd",  # 📍
-        "success": "\u0001f4e6",  # 📦
-        "error": "\u274c",  # ❌
-    }
-
-    print(f"{prefixes.get(level, '\u0001f4cd')} {message}")
 
 
 # --- VALIDATE LIB NAME
 def validate_library_name(lib_name: str) -> bool:
     """Check if the library name is valid."""
     if not lib_name or any(c in lib_name for c in '<>|&;"'):
-        log_message(f"Invalid library name: {lib_name}", "error")
+        logger(f"Invalid library name: {lib_name}", "error")
         return False
     return True
 
@@ -53,7 +43,7 @@ def install_lib(
     if not validate_library_name(lib_name):
         return
 
-    log_message(f"Installing {lib_name} ...", "info")
+    logger(f"Installing {lib_name} ...", "info")
 
     # Ensure requirements file exists
     if not os.path.exists(req_path):
@@ -61,9 +51,9 @@ def install_lib(
             with open(req_path, "w", encoding="utf-8") as f:
                 f.write("")  # create empty file
         except OSError as e:
-            log_message(f"Could not create {req_path}: {e}", "error")
+            logger(f"Could not create {req_path}: {e}", "error")
             return
-    log_message(f"Installing {lib_name} ...")
+    logger(f"Installing {lib_name} ...")
 
     # Update requirements.txt
     if not os.path.exists(req_path):
@@ -72,8 +62,7 @@ def install_lib(
 
     with open(req_path, "r", encoding="utf-8") as file:
         all_libs = file.readlines()
-        libs_list.update(line.strip().split(
-            "==")[0].lower() for line in all_libs)
+        libs_list.update(line.strip().split("==")[0].lower() for line in all_libs)
 
     if lib_name.lower() not in libs_list:
         with open(req_path, "a", encoding="utf-8") as file:
@@ -89,7 +78,7 @@ def install_lib(
                 if name:
                     libs_set.add(name)
     except OSError as e:
-        log_message(f"Could not read {req_path}: {e}", "error")
+        logger(f"Could not read {req_path}: {e}", "error")
         return
 
     # Append to requirements if missing
@@ -98,7 +87,7 @@ def install_lib(
             with open(req_path, "a", encoding="utf-8") as file:
                 file.write(f"{lib_name}\n")
         except OSError as e:
-            log_message(f"Could not write to {req_path}: {e}", "error")
+            logger(f"Could not write to {req_path}: {e}", "error")
             return
 
     # Run pip install
@@ -116,33 +105,32 @@ def install_lib(
         stdout_lower = stdout.lower()
 
         if "requirement already satisfied" in stdout_lower:
-            log_message(f"{lib_name} already installed", "success")
+            logger(f"{lib_name} already installed", "success")
 
         elif "successfully installed" in stdout_lower:
             # Find the line with "Successfully installed {lib_name}
             for line in stdout.splitlines():
                 if "Successfully installed" in line:
-                    log_message(line.strip(), "success")
+                    logger(line.strip(), "success")
 
         # If somewhat went wrong
         else:
-            log_message(f"{lib_name} installation output:", "info")
-            log_message(stdout.strip(), "info")
+            logger(f"{lib_name} installation output:", "info")
+            logger(stdout.strip(), "info")
 
     except CalledProcessError as e:
-        log_message(f"Failed to install {lib_name}", "error")
-        log_message(f"stdout: {e.stdout}", "error")
-        log_message(f"stderr: {e.stderr}error")
+        logger(f"Failed to install {lib_name}", "error")
+        logger(f"stdout: {e.stdout}", "error")
+        logger(f"stderr: {e.stderr}error")
 
-        log_message(f"Return code: {getattr(
-            e, 'returncode', 'unknown')}", "error")
+        logger(f"Return code: {getattr(e, 'returncode', 'unknown')}", "error")
         return
 
 
 # --- MAIN FUNCTION ---
 def main() -> None:
     if len(sys.argv) < 2:
-        log_message("Provide at least one library name", "error")
+        logger("Provide at least one library name", "error")
         sys.exit(1)
 
     libs_list: Set[str] = set()

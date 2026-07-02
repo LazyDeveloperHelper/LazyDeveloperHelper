@@ -16,6 +16,17 @@ function M.register()
         end
 
         local script_path = config_path .. script_name
+        local env_map = vim.fn.environ()
+        local python_path = config_path
+        if env_map.PYTHONPATH and env_map.PYTHONPATH ~= "" then
+            python_path = python_path .. ":" .. env_map.PYTHONPATH
+        end
+        local env = { "PYTHONPATH=" .. python_path }
+        for k, v in pairs(env_map) do
+            if k ~= "PYTHONPATH" then
+                table.insert(env, k .. "=" .. v)
+            end
+        end
 
         -- arguments is not important, Cargo.toml searching the python script
         local args = {}
@@ -29,6 +40,7 @@ function M.register()
         handle = vim.loop.spawn("python3", {
             args = { script_path, unpack(args) },
             stdio = { nil, stdout, stderr },
+            env = env,
         }, function(code)
             stdout:read_stop()
             stderr:read_stop()

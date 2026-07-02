@@ -5,28 +5,19 @@ from shutil import which as wh
 import sys
 import subprocess
 from pathlib import Path
+from logger import logger
 
 # --- CHECK GRADLE ---
 gradle = str(wh("gradle"))
 
 
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info") -> None:
-    prefixes = {
-        "info": "\U0001f4cd",  # 📍
-        "success": "\U0001f4e6",  # 📦
-        "error": "\u274c",  # ❌
-    }
-    print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
-
-
 # --- CHECK gradle EXIST ---
 def gradle_exists() -> bool:
     if gradle:
-        log_message(f"Used Gradle: {gradle}")
+        logger(f"Used Gradle: {gradle}")
         return True
     else:
-        log_message("Gradle doesnt exists, install it!", "error")
+        logger("Gradle doesnt exists, install it!", "error")
         return False
 
 
@@ -36,8 +27,7 @@ def find_gradle_project() -> Path | None:
     for _ in range(10):
         for gradle_file in ["build.gradle.kts", "build.gradle"]:
             if (current_dir / gradle_file).exists():
-                log_message(f"Found Gradle project: {
-                            current_dir / gradle_file}")
+                logger(f"Found Gradle project: {current_dir / gradle_file}")
                 return current_dir
         if current_dir.parent == current_dir:
             break
@@ -61,8 +51,7 @@ dependencies {
 }
 """
         build_file.write_text(template)
-        log_message(f"Created new {
-                    build_file.name} with minimal template", "success")
+        logger(f"Created new {build_file.name} with minimal template", "success")
 
     content = build_file.read_text()
 
@@ -77,7 +66,7 @@ dependencies {
         search_dep = f"{lib}:latest.release"
 
     if any(search_dep in line for line in content.splitlines()):
-        log_message(f"'{log_msg}' already present", "info")
+        logger(f"'{log_msg}' already present", "info")
         return True
 
     if 'kotlin("jvm")' not in content:
@@ -87,7 +76,7 @@ dependencies {
             content = content.replace(
                 "plugins {", 'plugins {\n    kotlin("jvm") version "1.9.24"'
             )
-        log_message("Added kotlin('jvm') plugin", "info")
+        logger("Added kotlin('jvm') plugin", "info")
 
     if "mavenCentral()" not in content:
         if "repositories {" not in content:
@@ -96,7 +85,7 @@ dependencies {
             content = content.replace(
                 "repositories {", "repositories {\n    mavenCentral()"
             )
-        log_message("Added mavenCentral()", "info")
+        logger("Added mavenCentral()", "info")
 
     lines = content.splitlines()
     deps_start = next(
@@ -111,7 +100,7 @@ dependencies {
         lines.insert(deps_start + 1, dep_line)
 
     build_file.write_text("\n".join(lines))
-    log_message(f"Added '{log_msg}' → {build_file.name}", "success")
+    logger(f"Added '{log_msg}' → {build_file.name}", "success")
     return True
 
 
@@ -119,7 +108,7 @@ dependencies {
 def install_package(lib: str) -> bool:
     project_dir = find_gradle_project()
     if not project_dir:
-        log_message("No Gradle project found!", "error")
+        logger("No Gradle project found!", "error")
         return False
 
     if not add_dependency_to_build(project_dir, lib):
@@ -133,10 +122,10 @@ def install_package(lib: str) -> bool:
             text=True,
             check=True,
         )
-        log_message(f"Successfully downloaded '{lib}'", "success")
+        logger(f"Successfully downloaded '{lib}'", "success")
         return True
     except subprocess.CalledProcessError:
-        log_message("Gradle build failed — check syntax", "error")
+        logger("Gradle build failed — check syntax", "error")
         return False
 
 
@@ -146,7 +135,7 @@ def main() -> None:
         return
 
     if len(sys.argv) < 2:
-        log_message("Usage: lib or artifact::group:artifact:version", "error")
+        logger("Usage: lib or artifact::group:artifact:version", "error")
         return
 
     for lib in sys.argv[1:]:
