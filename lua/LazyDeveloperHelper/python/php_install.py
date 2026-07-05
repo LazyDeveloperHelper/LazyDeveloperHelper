@@ -3,7 +3,6 @@ from shutil import which
 from logger import log_message as logger
 from subprocess import run
 
-
 COMPOSER_PATH = which("composer")
 if not COMPOSER_PATH:
     logger("Composer CLI are NOT found! Install it!", "error")
